@@ -1,0 +1,318 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #ffffff; /* Page background: Pure White */
+  --color-navy-900: #f8fafc; /* Card/Section off-white: Soft Gray */
+  --color-navy-800: #f1f5f9; /* Soft container background / Tab background */
+  --color-navy-700: #e2e8f0; /* Soft borders */
+  --color-navy-600: #cbd5e1; /* Secondary borders / Muted lines */
+  --color-navy-500: #94a3b8; /* Muted icons / placeholders */
+  --color-navy-400: #64748b; /* Muted typography */
+  --color-navy-300: #475569; /* Secondary typography */
+  --color-navy-200: #334155; /* Body typography */
+  --color-navy-100: #1e293b; /* Primary dark typography */
+  --color-navy-50: #0b1329;  /* Heading typography: Deep Oxford Navy */
+
+  --color-steel-900: #ffffff;
+  --color-steel-800: #f8fafc;
+  --color-steel-700: #f1f5f9;
+  --color-steel-600: #e2e8f0;
+  --color-steel-500: #64748b;
+  --color-steel-400: #475569;
+  --color-steel-300: #334155;
+  --color-steel-200: #1e293b;
+  --color-steel-100: #0f172a;
+  --color-steel-50: #0b1329;
+
+  --color-accent-blue: #1e40af;     /* Elite Oxford Blue (Navy Accent) */
+  --color-accent-cyan: #0369a1;     /* Sophisticated Steel Blue */
+  --color-accent-emerald: #047857;  /* Forest Emerald */
+  --color-accent-amber: #b45309;    /* Consulting Gold / Warm Amber */
+  --color-accent-rose: #be123c;     /* Crimson Red */
+  --color-accent-violet: #6d28d9;   /* Royal Purple */
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+/* ── Base Styles ────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--color-steel-200); /* Slate-800 */
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+/* ── Global Typography Overrides ────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-navy-50) !important; /* Deep Oxford Navy */
+  letter-spacing: -0.02em;
+}
+
+/* Smart override for text-white on light background */
+p.text-white, span.text-white, div.text-white, li.text-white {
+  color: var(--color-navy-50) !important;
+}
+
+/* Exemptions where text-white must remain pure white (buttons, tooltips, dark badges) */
+button .text-white, button.text-white,
+a.text-white, a .text-white,
+.bg-accent-blue .text-white, .bg-accent-blue.text-white,
+.bg-accent-cyan .text-white, .bg-accent-cyan.text-white,
+.bg-accent-emerald .text-white, .bg-accent-emerald.text-white,
+.bg-accent-rose .text-white, .bg-accent-rose.text-white,
+.custom-tooltip .text-white, .custom-tooltip.text-white,
+.tooltip .text-white, .tooltip.text-white,
+.recharts-tooltip-wrapper .text-white,
+.badge .text-white, .badge.text-white,
+.keep-white {
+  color: #ffffff !important;
+}
+
+/* ── Custom Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ── Section Striping ───────────────────────────────────── */
+section {
+  background-color: #ffffff;
+}
+
+section:nth-of-type(even) {
+  background-color: #f8fafc; /* Elegant soft gray alternate */
+}
+
+/* ── Animations ─────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(30, 64, 175, 0.05); }
+  50% { box-shadow: 0 0 35px rgba(30, 64, 175, 0.12); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ── Stagger Delays ─────────────────────────────────────── */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* ── Premium Light Card ─────────────────────────────────── */
+.glass-card {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px -2px rgba(15, 23, 42, 0.03), 0 1px 4px -1px rgba(15, 23, 42, 0.01);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(30, 64, 175, 0.18);
+  box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.02);
+  transform: translateY(-2px);
+}
+
+/* ── Gradient Text (Refined for light background) ───────── */
+.gradient-text {
+  background: linear-gradient(135deg, #1e40af, #0369a1, #047857);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(135deg, #b45309, #d97706, #b45309);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section Styles ─────────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(15, 23, 42, 0.08) 50%,
+    transparent 100%
+  );
+}
+
+/* ── Chart Container ────────────────────────────────────── */
+.chart-container {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.02);
+}
+
+/* ── Metric Card ────────────────────────────────────────── */
+.metric-highlight {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 64, 175, 0.02) 0%,
+    rgba(3, 105, 161, 0.02) 100%
+  );
+  border-left: 3px solid var(--color-accent-blue);
+  border-radius: 0 8px 8px 0;
+  border-top: 1px solid rgba(15, 23, 42, 0.04);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+  border-right: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+/* ── Navigation Links ───────────────────────────────────── */
+.nav-link {
+  position: relative;
+  color: var(--color-navy-400); /* Slate-500 */
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-accent-blue); /* Elite Navy */
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-blue), var(--color-accent-cyan));
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--color-accent-blue) !important;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ── Tab Button ─────────────────────────────────────────── */
+.tab-button {
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-navy-400);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+  color: var(--color-navy-100);
+  background: rgba(30, 64, 175, 0.03);
+}
+
+.tab-button.active {
+  color: var(--color-accent-blue) !important;
+  background: rgba(30, 64, 175, 0.06);
+  border-color: rgba(30, 64, 175, 0.12);
+  font-weight: 600;
+}
+
+/* ── Progress Bar ───────────────────────────────────────── */
+.progress-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s ease-out;
+}
+
+/* ── Custom Tooltip ─────────────────────────────────────── */
+.custom-tooltip {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08) !important;
+  backdrop-filter: blur(8px);
+}
+
+.custom-tooltip .label {
+  color: var(--color-navy-50) !important;
+  font-weight: 600;
+  margin-bottom: 4px;
+}

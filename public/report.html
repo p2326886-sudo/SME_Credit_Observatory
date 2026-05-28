@@ -1,0 +1,2673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India SME Credit Intelligence Observatory — Priyanshu Gupta</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0f0f;
+    --ink-secondary: #2c2c2c;
+    --ink-muted: #5a5a5a;
+    --ink-faint: #8a8a8a;
+    --rule: #c8c0b4;
+    --rule-light: #e8e4de;
+    --bg: #faf8f5;
+    --bg-warm: #f4f1ec;
+    --bg-card: #ffffff;
+    --accent: #1a3a5c;
+    --accent-mid: #2d5a8a;
+    --accent-light: #e8eef5;
+    --accent-pale: #f0f4f8;
+    --gold: #8b6914;
+    --gold-light: #c49a1e;
+    --gold-pale: #faf5e8;
+    --red-stress: #8b1a1a;
+    --red-pale: #fdf0f0;
+    --green-ok: #1a5c2d;
+    --green-pale: #eef6f1;
+    --amber: #7a4a0a;
+    --amber-pale: #fdf6ee;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Source Serif 4', Georgia, serif;
+    --font-mono: 'DM Mono', 'Courier New', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 11pt; background: #ddd; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: #ccc;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── PAGE SHELL ─────────────────────────────────────────── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--bg);
+    margin: 12mm auto;
+    padding: 0;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .page-inner {
+    padding: 18mm 18mm 14mm 18mm;
+  }
+
+  /* ─── RUNNING HEADER ─────────────────────────────────────── */
+  .running-header {
+    height: 9mm;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18mm;
+  }
+  .running-header span {
+    font-family: var(--font-mono);
+    font-size: 6.5pt;
+    color: rgba(255,255,255,0.72);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .running-header .rh-title { color: rgba(255,255,255,0.55); }
+
+  /* ─── RUNNING FOOTER ─────────────────────────────────────── */
+  .running-footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 8mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18mm;
+    border-top: 0.5pt solid var(--rule);
+  }
+  .running-footer span {
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── COVER PAGE ─────────────────────────────────────────── */
+  .cover-page {
+    min-height: 297mm;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cover-top-bar {
+    height: 2.5mm;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-mid) 60%, var(--gold) 100%);
+  }
+
+  .cover-institution-bar {
+    background: var(--accent);
+    padding: 7mm 18mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cover-institution-bar .inst-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .inst-label {
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .inst-name {
+    font-family: var(--font-display);
+    font-size: 10pt;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .inst-prog {
+    font-family: var(--font-mono);
+    font-size: 6.5pt;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+  .cover-institution-bar .inst-right {
+    text-align: right;
+  }
+  .inst-doc-type {
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .inst-doc-id {
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    color: rgba(255,255,255,0.65);
+    margin-top: 3px;
+  }
+
+  .cover-body {
+    flex: 1;
+    padding: 14mm 18mm 0 18mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cover-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10mm;
+  }
+  .cover-eyebrow-line { flex: 1; height: 0.5pt; background: var(--rule); }
+  .cover-eyebrow-text {
+    font-family: var(--font-mono);
+    font-size: 6.5pt;
+    color: var(--gold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .cover-title {
+    font-family: var(--font-display);
+    font-size: 30pt;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: 6mm;
+  }
+  .cover-title em {
+    font-style: italic;
+    color: var(--accent-mid);
+  }
+
+  .cover-subtitle {
+    font-family: var(--font-body);
+    font-size: 11pt;
+    color: var(--ink-secondary);
+    line-height: 1.55;
+    font-weight: 300;
+    font-style: italic;
+    max-width: 145mm;
+    margin-bottom: 10mm;
+    padding-left: 3mm;
+    border-left: 2pt solid var(--gold);
+  }
+
+  .cover-divider {
+    height: 0.5pt;
+    background: linear-gradient(90deg, var(--rule) 0%, transparent 100%);
+    margin: 6mm 0;
+  }
+
+  .cover-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5mm;
+    margin-bottom: 10mm;
+  }
+  .cover-meta-item {}
+  .cover-meta-label {
+    font-family: var(--font-mono);
+    font-size: 5.5pt;
+    color: var(--ink-faint);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .cover-meta-value {
+    font-family: var(--font-body);
+    font-size: 8.5pt;
+    color: var(--ink-secondary);
+    font-weight: 600;
+  }
+
+  .cover-scope-box {
+    background: var(--accent-pale);
+    border: 0.5pt solid var(--rule);
+    border-left: 2.5pt solid var(--accent);
+    padding: 5mm 6mm;
+    margin-bottom: 8mm;
+  }
+  .cover-scope-box .scope-label {
+    font-family: var(--font-mono);
+    font-size: 5.5pt;
+    color: var(--accent-mid);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .cover-scope-box p {
+    font-size: 8pt;
+    color: var(--ink-secondary);
+    line-height: 1.55;
+  }
+
+  .cover-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 10mm;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 5.5pt;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 0.5pt solid var(--accent-mid);
+    padding: 2px 7px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .cover-bottom {
+    margin-top: auto;
+    padding: 8mm 18mm;
+    background: var(--bg-warm);
+    border-top: 0.5pt solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-bottom .author-block {}
+  .cover-bottom .author-name {
+    font-family: var(--font-display);
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .cover-bottom .author-detail {
+    font-family: var(--font-mono);
+    font-size: 6.5pt;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .cover-bottom .date-block {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    color: var(--ink-faint);
+    letter-spacing: 0.08em;
+  }
+  .cover-confidential {
+    font-family: var(--font-mono);
+    font-size: 5.5pt;
+    color: var(--ink-faint);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 0.5pt solid var(--rule);
+    padding: 2px 6px;
+    display: inline-block;
+    margin-top: 4px;
+  }
+
+  .cover-bottom-bar {
+    height: 1.5mm;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-mid) 50%, var(--gold) 100%);
+  }
+
+  /* ─── SECTION TYPOGRAPHY ─────────────────────────────────── */
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4mm;
+  }
+  .section-number {
+    font-family: var(--font-mono);
+    font-size: 6.5pt;
+    color: var(--gold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .section-eyebrow-line {
+    flex: 1;
+    height: 0.5pt;
+    background: var(--rule);
+  }
+
+  h1.section-title {
+    font-family: var(--font-display);
+    font-size: 22pt;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.18;
+    margin-bottom: 4mm;
+    letter-spacing: -0.01em;
+  }
+  h1.section-title em { font-style: italic; color: var(--accent-mid); }
+
+  h2.subsection {
+    font-family: var(--font-display);
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-top: 7mm;
+    margin-bottom: 3mm;
+    padding-bottom: 2mm;
+    border-bottom: 0.5pt solid var(--rule);
+  }
+
+  h3.sub-subsection {
+    font-family: var(--font-body);
+    font-size: 9.5pt;
+    font-weight: 600;
+    color: var(--ink-secondary);
+    margin-top: 5mm;
+    margin-bottom: 2mm;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  p { margin-bottom: 3mm; font-size: 9.5pt; color: var(--ink-secondary); }
+  p.lead {
+    font-size: 11pt;
+    color: var(--ink);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 5mm;
+  }
+
+  /* ─── CALLOUT BOXES ──────────────────────────────────────── */
+  .callout {
+    padding: 5mm 6mm;
+    margin: 5mm 0;
+    border-left: 2.5pt solid;
+  }
+  .callout-title {
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+    font-weight: 500;
+  }
+  .callout p { margin: 0; font-size: 8.5pt; line-height: 1.6; }
+  .callout.key-finding { background: var(--gold-pale); border-color: var(--gold); }
+  .callout.key-finding .callout-title { color: var(--gold); }
+  .callout.warning { background: var(--red-pale); border-color: var(--red-stress); }
+  .callout.warning .callout-title { color: var(--red-stress); }
+  .callout.insight { background: var(--accent-pale); border-color: var(--accent); }
+  .callout.insight .callout-title { color: var(--accent-mid); }
+  .callout.note { background: var(--bg-warm); border-color: var(--rule); }
+  .callout.note .callout-title { color: var(--ink-muted); }
+  .callout.positive { background: var(--green-pale); border-color: var(--green-ok); }
+  .callout.positive .callout-title { color: var(--green-ok); }
+
+  /* ─── STAT BOXES ─────────────────────────────────────────── */
+  .stat-row {
+    display: grid;
+    gap: 4mm;
+    margin: 5mm 0;
+  }
+  .stat-row.cols-2 { grid-template-columns: 1fr 1fr; }
+  .stat-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .stat-row.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  .stat-box {
+    background: var(--bg-card);
+    border: 0.5pt solid var(--rule);
+    padding: 4mm 5mm;
+    position: relative;
+  }
+  .stat-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2pt;
+    background: var(--accent);
+  }
+  .stat-box.gold::before { background: var(--gold); }
+  .stat-box.red::before { background: var(--red-stress); }
+  .stat-box.green::before { background: var(--green-ok); }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 5.5pt;
+    color: var(--ink-faint);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 20pt;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 1px;
+  }
+  .stat-box.gold .stat-value { color: var(--gold); }
+  .stat-box.red .stat-value { color: var(--red-stress); }
+  .stat-box.green .stat-value { color: var(--green-ok); }
+  .stat-note {
+    font-family: var(--font-mono);
+    font-size: 5.5pt;
+    color: var(--ink-faint);
+    line-height: 1.4;
+  }
+
+  /* ─── TABLES ─────────────────────────────────────────────── */
+  .table-container { margin: 5mm 0; overflow: hidden; }
+  .table-caption {
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .table-caption::after { content: ''; flex: 1; height: 0.5pt; background: var(--rule); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+    font-size: 8pt;
+  }
+  thead tr {
+    background: var(--accent);
+    color: #fff;
+  }
+  thead th {
+    padding: 3mm 4mm;
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: none;
+  }
+  tbody tr { border-bottom: 0.5pt solid var(--rule-light); }
+  tbody tr:nth-child(even) { background: var(--bg-warm); }
+  tbody td {
+    padding: 2.5mm 4mm;
+    color: var(--ink-secondary);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  td.num { font-family: var(--font-mono); font-size: 7.5pt; text-align: right; }
+  td.bold { font-weight: 600; color: var(--ink); }
+  td.accent { color: var(--accent-mid); font-weight: 600; }
+  td.red { color: var(--red-stress); font-weight: 600; }
+  td.gold { color: var(--gold); font-weight: 600; }
+  td.green { color: var(--green-ok); font-weight: 600; }
+
+  /* ─── CHART PLACEHOLDERS ─────────────────────────────────── */
+  .chart-placeholder {
+    background: var(--bg-warm);
+    border: 0.5pt solid var(--rule);
+    margin: 5mm 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .chart-placeholder-inner {
+    padding: 5mm;
+    min-height: 45mm;
+    display: flex;
+    flex-direction: column;
+  }
+  .chart-label {
+    font-family: var(--font-mono);
+    font-size: 5.5pt;
+    color: var(--ink-faint);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 3mm;
+  }
+  .chart-title {
+    font-family: var(--font-display);
+    font-size: 9pt;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2mm;
+  }
+  .chart-desc {
+    font-family: var(--font-body);
+    font-size: 7.5pt;
+    color: var(--ink-muted);
+    font-style: italic;
+    line-height: 1.5;
+    flex: 1;
+  }
+  .chart-viz {
+    margin-top: 3mm;
+    display: flex;
+    align-items: flex-end;
+    gap: 3mm;
+    height: 28mm;
+  }
+  .bar {
+    flex: 1;
+    background: var(--accent);
+    opacity: 0.15;
+    position: relative;
+    min-width: 6mm;
+  }
+  .bar.active { opacity: 0.5; }
+  .bar.highlight { opacity: 0.85; background: var(--gold); }
+  .bar.stress { opacity: 0.7; background: var(--red-stress); }
+  .bar-label {
+    position: absolute;
+    bottom: -5mm;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 5pt;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+
+  /* ─── MATRIX ─────────────────────────────────────────────── */
+  .matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin: 5mm 0;
+  }
+  .matrix-cell {
+    background: var(--bg-card);
+    border: 0.5pt solid var(--rule);
+    padding: 4mm;
+  }
+  .matrix-cell-title {
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    color: var(--accent-mid);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+  }
+  .matrix-cell p { font-size: 8pt; margin: 0; }
+
+  /* ─── INDEX / TOC ─────────────────────────────────────────── */
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    padding: 2mm 0;
+    border-bottom: 0.5pt solid var(--rule-light);
+  }
+  .toc-num {
+    font-family: var(--font-mono);
+    font-size: 6.5pt;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    min-width: 9mm;
+  }
+  .toc-title {
+    font-family: var(--font-body);
+    font-size: 9pt;
+    color: var(--ink-secondary);
+    flex: 1;
+  }
+  .toc-dots {
+    flex: 1;
+    border-bottom: 1pt dotted var(--rule);
+    margin: 0 2mm;
+    min-width: 8mm;
+  }
+  .toc-page {
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    color: var(--ink-faint);
+    min-width: 7mm;
+    text-align: right;
+  }
+  .toc-section-header {
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4mm 0 1mm 0;
+  }
+
+  /* ─── FRAMEWORK / FLOW ───────────────────────────────────── */
+  .framework-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 5mm 0;
+  }
+  .framework-node {
+    flex: 1;
+    background: var(--bg-card);
+    border: 0.5pt solid var(--rule);
+    padding: 3.5mm 4mm;
+    position: relative;
+    text-align: center;
+  }
+  .framework-node + .framework-node {
+    border-left: none;
+  }
+  .framework-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2mm;
+    font-size: 9pt;
+    color: var(--ink-faint);
+  }
+  .fn-label {
+    font-family: var(--font-mono);
+    font-size: 5.5pt;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .fn-title {
+    font-family: var(--font-display);
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .fn-sub {
+    font-family: var(--font-body);
+    font-size: 6.5pt;
+    color: var(--ink-muted);
+    margin-top: 2px;
+  }
+
+  /* ─── EXEC SUMMARY BOX ───────────────────────────────────── */
+  .exec-summary-box {
+    background: var(--accent);
+    color: #fff;
+    padding: 7mm 8mm;
+    margin: 6mm 0;
+  }
+  .exec-summary-box .esb-label {
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 3mm;
+  }
+  .exec-summary-box p {
+    color: rgba(255,255,255,0.88);
+    font-size: 9.5pt;
+    margin-bottom: 2mm;
+    line-height: 1.65;
+  }
+  .exec-summary-box .esb-finding {
+    display: flex;
+    gap: 4mm;
+    align-items: flex-start;
+    margin-bottom: 2.5mm;
+  }
+  .esb-bullet {
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    color: var(--gold-light);
+    margin-top: 1px;
+    white-space: nowrap;
+  }
+  .esb-text {
+    font-family: var(--font-body);
+    font-size: 8.5pt;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.6;
+  }
+
+  /* ─── PILL / BADGE ───────────────────────────────────────── */
+  .badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 5.5pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1.5px 5px;
+    border-radius: 1px;
+  }
+  .badge.high { background: var(--red-pale); color: var(--red-stress); border: 0.5pt solid var(--red-stress); }
+  .badge.medium { background: var(--amber-pale); color: var(--amber); border: 0.5pt solid var(--amber); }
+  .badge.low { background: var(--green-pale); color: var(--green-ok); border: 0.5pt solid var(--green-ok); }
+  .badge.improving { background: var(--accent-pale); color: var(--accent); border: 0.5pt solid var(--accent-mid); }
+
+  /* ─── HORIZONTAL RULE ────────────────────────────────────── */
+  .rule { height: 0.5pt; background: var(--rule); margin: 5mm 0; }
+  .rule-heavy { height: 1pt; background: var(--rule); margin: 4mm 0; }
+
+  /* ─── FOOTNOTES ──────────────────────────────────────────── */
+  .footnote-section {
+    border-top: 0.5pt solid var(--rule);
+    margin-top: 6mm;
+    padding-top: 3mm;
+  }
+  .footnote {
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    color: var(--ink-faint);
+    line-height: 1.7;
+    margin-bottom: 1.5px;
+  }
+
+  /* ─── TWO-COLUMN ─────────────────────────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+  .two-col-60-40 { display: grid; grid-template-columns: 3fr 2fr; gap: 6mm; }
+
+  /* ─── LIST STYLES ────────────────────────────────────────── */
+  ul.report-list { padding-left: 4mm; margin: 3mm 0 4mm; }
+  ul.report-list li {
+    font-size: 8.5pt;
+    color: var(--ink-secondary);
+    margin-bottom: 1.5mm;
+    line-height: 1.55;
+    list-style: none;
+    padding-left: 4mm;
+    position: relative;
+  }
+  ul.report-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-family: var(--font-mono);
+  }
+
+  ol.report-list-num { padding-left: 5mm; margin: 3mm 0 4mm; }
+  ol.report-list-num li {
+    font-size: 8.5pt;
+    color: var(--ink-secondary);
+    margin-bottom: 2mm;
+    line-height: 1.55;
+    padding-left: 2mm;
+  }
+
+  /* ─── SCORE / HEAT CELL ──────────────────────────────────── */
+  .heat-table table { border-collapse: collapse; }
+  .heat-high { background: #f8e8e8; color: var(--red-stress); font-weight: 600; font-family: var(--font-mono); font-size: 7.5pt; }
+  .heat-medium { background: #fdf5e6; color: var(--amber); font-weight: 600; font-family: var(--font-mono); font-size: 7.5pt; }
+  .heat-low { background: #eaf4ee; color: var(--green-ok); font-weight: 600; font-family: var(--font-mono); font-size: 7.5pt; }
+
+  /* ─── PRINT ──────────────────────────────────────────────── */
+  @media print {
+    html { font-size: 10pt; background: white; }
+    body { background: white; }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      page-break-after: always;
+      width: 100%;
+    }
+  }
+
+  /* ─── PROGRESS BAR ───────────────────────────────────────── */
+  .progress-row { margin: 2mm 0; display: flex; align-items: center; gap: 3mm; }
+  .progress-label { font-family: var(--font-mono); font-size: 6.5pt; color: var(--ink-muted); width: 38mm; flex-shrink: 0; letter-spacing: 0.04em; }
+  .progress-bar-track { flex: 1; height: 3mm; background: var(--rule-light); position: relative; }
+  .progress-bar-fill { height: 100%; background: var(--accent); }
+  .progress-bar-fill.gold { background: var(--gold); }
+  .progress-bar-fill.red { background: var(--red-stress); }
+  .progress-val { font-family: var(--font-mono); font-size: 6.5pt; color: var(--ink-secondary); width: 10mm; text-align: right; flex-shrink: 0; }
+
+  /* ─── QUOTE ──────────────────────────────────────────────── */
+  blockquote.pull-quote {
+    border-left: 3pt solid var(--gold);
+    margin: 5mm 0;
+    padding: 3mm 6mm;
+    background: var(--gold-pale);
+  }
+  blockquote.pull-quote p {
+    font-family: var(--font-display);
+    font-size: 10.5pt;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.55;
+    margin: 0 0 2mm 0;
+  }
+  blockquote.pull-quote cite {
+    font-family: var(--font-mono);
+    font-size: 6pt;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .page-number-display {
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    color: var(--ink-faint);
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 1 — COVER
+═══════════════════════════════════════════════════════════════ -->
+<div class="page cover-page">
+  <div class="cover-top-bar"></div>
+  <div class="cover-institution-bar">
+    <div class="inst-left">
+      <span class="inst-label">Research Background</span>
+      <span class="inst-name">Lovely Professional University, Punjab</span>
+      <span class="inst-prog">Bachelor of Business Administration · School of Business</span>
+    </div>
+    <div class="inst-right">
+      <span class="inst-doc-type">Independent Analytical Research Project</span>
+      <div class="inst-doc-id">Independent Research Edition · 2025</div>
+    </div>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow">
+      <div class="cover-eyebrow-line"></div>
+      <span class="cover-eyebrow-text">Analytical Research Project · 2025</span>
+      <div class="cover-eyebrow-line"></div>
+    </div>
+
+    <div class="cover-title">India SME Credit<br><em>Intelligence</em><br>Observatory</div>
+
+    <div class="cover-subtitle">
+      Financing Friction, Working-Capital Stress &amp; Digital Credit Readiness in Emerging Business Ecosystems
+    </div>
+
+    <div class="cover-divider"></div>
+
+    <div class="cover-meta-grid">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Primary Research Domain</div>
+        <div class="cover-meta-value">MSME Finance &amp; Credit Systems</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Geographic Focus</div>
+        <div class="cover-meta-value">India — Tier 2 &amp; Tier 3 Markets</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Publication Year</div>
+        <div class="cover-meta-value">2025 — Academic Edition</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Report Classification</div>
+        <div class="cover-meta-value">Analytical Research Portfolio</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Sector Coverage</div>
+        <div class="cover-meta-value">Manufacturing · Retail · Agro-Processing</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Analytical Framework</div>
+        <div class="cover-meta-value">Credit Friction &amp; Liquidity Stress</div>
+      </div>
+    </div>
+
+    <div class="cover-scope-box">
+      <div class="scope-label">Project Scope &amp; Intent</div>
+      <p>This is an independent analytical research project examining the structural and operational dimensions of credit access failure among Indian MSMEs, with particular attention to working-capital stress cycles, digital lending infrastructure gaps, and the systemic barriers constraining formal financing adoption in non-metropolitan business ecosystems. The analysis synthesises publicly available institutional data and policy literature. It is produced for academic portfolio purposes and does not represent an institutional publication, whitepaper, or peer-reviewed work.</p>
+    </div>
+
+    <div class="cover-tags">
+      <span class="tag">MSME Finance</span>
+      <span class="tag">Credit Gap</span>
+      <span class="tag">Working Capital</span>
+      <span class="tag">Digital Lending</span>
+      <span class="tag">FinTech</span>
+      <span class="tag">Uttar Pradesh</span>
+      <span class="tag">Financial Inclusion</span>
+      <span class="tag">RBI Policy</span>
+      <span class="tag">SME Modernization</span>
+      <span class="tag">Operational Liquidity</span>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="author-block">
+      <div class="author-name">Priyanshu Gupta</div>
+      <div class="author-detail">B.B.A. Candidate · Lovely Professional University, Punjab</div>
+      <div class="author-detail">Research Context: Small Business Ecosystems in Eastern Uttar Pradesh</div>
+      <div class="cover-confidential">For Academic &amp; Portfolio Use · Non-Commercial</div>
+    </div>
+    <div class="date-block">
+      <div>Publication Date</div>
+      <div style="font-size:8pt; color: var(--ink-secondary); font-weight:600; margin-top:2px;">2025</div>
+      <div style="margin-top:4px;">Research Portfolio Edition</div>
+      <div style="margin-top:2px;">Sections · 19</div>
+    </div>
+  </div>
+  <div class="cover-bottom-bar"></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 2 — TABLE OF CONTENTS
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Table of Contents</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Contents</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">Table of<br><em>Contents</em></h1>
+    <p class="lead" style="margin-bottom:6mm;">A structured index of all analytical sections, frameworks, and data modules contained in this research report.</p>
+
+    <div class="toc-section-header">Frontmatter</div>
+    <div class="toc-item"><span class="toc-num">—</span><span class="toc-title">Cover Page &amp; Report Metadata</span><span class="toc-dots"></span><span class="toc-page">01</span></div>
+    <div class="toc-item"><span class="toc-num">—</span><span class="toc-title">Table of Contents</span><span class="toc-dots"></span><span class="toc-page">02</span></div>
+
+    <div class="toc-section-header">Core Analysis</div>
+    <div class="toc-item"><span class="toc-num">01</span><span class="toc-title">Executive Summary</span><span class="toc-dots"></span><span class="toc-page">03</span></div>
+    <div class="toc-item"><span class="toc-num">02</span><span class="toc-title">Research Context &amp; Problem Statement</span><span class="toc-dots"></span><span class="toc-page">04</span></div>
+    <div class="toc-item"><span class="toc-num">03</span><span class="toc-title">MSME Financing Landscape in India</span><span class="toc-dots"></span><span class="toc-page">05</span></div>
+    <div class="toc-item"><span class="toc-num">04</span><span class="toc-title">Credit Friction Framework</span><span class="toc-dots"></span><span class="toc-page">07</span></div>
+    <div class="toc-item"><span class="toc-num">05</span><span class="toc-title">Working-Capital Stress Analysis</span><span class="toc-dots"></span><span class="toc-page">09</span></div>
+    <div class="toc-item"><span class="toc-num">06</span><span class="toc-title">Operational Liquidity Stress Model</span><span class="toc-dots"></span><span class="toc-page">11</span></div>
+    <div class="toc-item"><span class="toc-num">07</span><span class="toc-title">Sector-wise Financing Stress Analysis</span><span class="toc-dots"></span><span class="toc-page">13</span></div>
+    <div class="toc-item"><span class="toc-num">08</span><span class="toc-title">State-wise Credit Readiness Comparison</span><span class="toc-dots"></span><span class="toc-page">15</span></div>
+    <div class="toc-item"><span class="toc-num">09</span><span class="toc-title">Digital Lending Infrastructure Analysis</span><span class="toc-dots"></span><span class="toc-page">17</span></div>
+
+    <div class="toc-section-header">Strategic &amp; Policy Intelligence</div>
+    <div class="toc-item"><span class="toc-num">10</span><span class="toc-title">MSME Financing Modernization Challenges</span><span class="toc-dots"></span><span class="toc-page">19</span></div>
+    <div class="toc-item"><span class="toc-num">11</span><span class="toc-title">Policy Recommendations</span><span class="toc-dots"></span><span class="toc-page">21</span></div>
+    <div class="toc-item"><span class="toc-num">12</span><span class="toc-title">Institutional Recommendations</span><span class="toc-dots"></span><span class="toc-page">22</span></div>
+    <div class="toc-item"><span class="toc-num">13</span><span class="toc-title">Dashboard Architecture</span><span class="toc-dots"></span><span class="toc-page">23</span></div>
+
+    <div class="toc-section-header">Research Apparatus</div>
+    <div class="toc-item"><span class="toc-num">14</span><span class="toc-title">Methodology</span><span class="toc-dots"></span><span class="toc-page">24</span></div>
+    <div class="toc-item"><span class="toc-num">15</span><span class="toc-title">Limitations of Research</span><span class="toc-dots"></span><span class="toc-page">25</span></div>
+    <div class="toc-item"><span class="toc-num">16</span><span class="toc-title">About the Researcher</span><span class="toc-dots"></span><span class="toc-page">26</span></div>
+    <div class="toc-item"><span class="toc-num">17</span><span class="toc-title">Conclusion</span><span class="toc-dots"></span><span class="toc-page">27</span></div>
+    <div class="toc-item"><span class="toc-num">18</span><span class="toc-title">References &amp; Source Bibliography</span><span class="toc-dots"></span><span class="toc-page">28</span></div>
+
+    <div class="rule" style="margin-top:8mm;"></div>
+    <div class="callout note" style="margin-top:5mm;">
+      <div class="callout-title">Research Note</div>
+      <p>All quantitative data cited in this project is drawn from publicly available institutional sources: RBI Annual Reports, SIDBI MSME Pulse, World Bank Enterprise Surveys, IFC MSME Finance Gap Reports, Ministry of MSME Annual Reports, and NABARD financial inclusion surveys. No primary fieldwork, surveys, or interviews were conducted. This is an independent analytical synthesis produced for academic portfolio purposes.</p>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">02</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 3 — EXECUTIVE SUMMARY
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 01 — Executive Summary</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 01</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">Executive<br><em>Summary</em></h1>
+
+    <div class="exec-summary-box">
+      <div class="esb-label">Central Finding</div>
+      <p>India's MSME sector — the engine behind domestic employment and a third of economic output — operates in a state of chronic credit undersupply. With an estimated financing gap of USD 380–530 billion and fewer than one in six MSME units accessing formal institutional credit, the sector's financial position sits in stark contradiction to its economic importance. The gap is not simply a matter of capital scarcity. It reflects something more structural: a financial system that was designed around a different kind of borrower, and has been slow to adapt to the informal, asset-light, cash-flow-dependent reality that defines small enterprise in India.</p>
+
+      <div style="margin-top:4mm;">
+        <div class="esb-finding"><span class="esb-bullet">01 ·</span><span class="esb-text"><strong style="color:#fff;">Credit Penetration Deficit:</strong> Fewer than 16% of MSME units in India access formal institutional credit. The majority rely on informal moneylenders, trade credit, or personal savings — all carrying significant cost and fragility penalties.</span></div>
+        <div class="esb-finding"><span class="esb-bullet">02 ·</span><span class="esb-text"><strong style="color:#fff;">Working-Capital Stress Cycle:</strong> Delayed receivables — often 60 to 120 days in B2B supply chains — trigger compressive liquidity cycles that force MSMEs into distress borrowing or operational curtailment, especially acute in manufacturing and agro-processing segments.</span></div>
+        <div class="esb-finding"><span class="esb-bullet">03 ·</span><span class="esb-text"><strong style="color:#fff;">Geographic Concentration of Credit:</strong> Formal MSME credit remains disproportionately concentrated in metro and Tier 1 cities. States such as Uttar Pradesh, Bihar, and Madhya Pradesh — with large MSME populations — record credit disbursement levels significantly below national averages on a per-unit basis.</span></div>
+        <div class="esb-finding"><span class="esb-bullet">04 ·</span><span class="esb-text"><strong style="color:#fff;">Digital Lending as Partial Solution:</strong> Account Aggregator frameworks, OCEN, and GST-linked credit scoring represent genuine infrastructure advances. However, adoption remains constrained by digital literacy gaps, connectivity barriers, and trust deficits among first-generation entrepreneurs in non-metropolitan markets.</span></div>
+        <div class="esb-finding"><span class="esb-bullet">05 ·</span><span class="esb-text"><strong style="color:#fff;">COVID-19 as Structural Accelerant:</strong> The pandemic amplified pre-existing vulnerabilities — particularly for MSMEs with thin working-capital buffers — while also catalysing emergency credit interventions (ECLGS) that have since revealed the depth of underlying structural deficiencies.</span></div>
+      </div>
+    </div>
+
+    <div class="stat-row cols-4" style="margin-top:5mm;">
+      <div class="stat-box red">
+        <div class="stat-label">Formal Credit Gap</div>
+        <div class="stat-value">₹25T+</div>
+        <div class="stat-note">Est. unmet formal credit demand (IFC / SIDBI)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">MSME Units Registered</div>
+        <div class="stat-value">63M+</div>
+        <div class="stat-note">Udyam portal &amp; legacy registrations</div>
+      </div>
+      <div class="stat-box gold">
+        <div class="stat-label">Formal Credit Access</div>
+        <div class="stat-value">~14%</div>
+        <div class="stat-note">Of MSME units with active institutional credit</div>
+      </div>
+      <div class="stat-box green">
+        <div class="stat-label">GDP Contribution</div>
+        <div class="stat-value">30%+</div>
+        <div class="stat-note">MSME share of India's GDP (MoMSME, 2023)</div>
+      </div>
+    </div>
+
+    <div class="callout key-finding" style="margin-top:4mm;">
+      <div class="callout-title">Strategic Implication for Policymakers</div>
+      <p>The financing friction faced by Indian MSMEs is structurally self-reinforcing: limited credit history prevents formal credit access, which prevents growth, which prevents the accumulation of credit history. Breaking this cycle requires simultaneous interventions at the supply side (lender capability), demand side (borrower readiness), and infrastructure level (data plumbing and digital rails). This report proposes a tripartite framework for doing so.</p>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">03</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 4 — RESEARCH CONTEXT
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 02 — Research Context</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 02</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">Research Context &amp;<br><em>Problem Statement</em></h1>
+
+    <p class="lead">India's economic development narrative has long centred on two poles: large-scale industrial enterprise and subsistence-level informal activity. The vast middle terrain — occupied by micro, small, and medium enterprises — has remained under-examined, under-served, and underestimated.</p>
+
+    <h2 class="subsection">2.1 — Why MSME Finance Matters Now</h2>
+    <p>The MSME sector sits at the centre of India's economic structure in ways that are easy to cite but harder to fully appreciate. These enterprises generate roughly 45% of exports and account for more than 30% of GDP — figures that appear in nearly every policy document. What those numbers represent is something more granular: millions of small manufacturers, traders, service providers, and processors whose financial health is inseparable from the health of the broader economy. Credit access for MSMEs is not a narrow financial market question; it is a development priority of the first order.</p>
+    <p>India's demographic arithmetic makes this particularly urgent. Roughly ten to twelve million new workers enter the labour market each year. The formal corporate sector and public employment cannot absorb them all — not even close. MSMEs, concentrated in Tier 2, 3, and rural geographies, carry much of the load. When these enterprises cannot grow because credit is unavailable, the consequences ripple outward quickly: workers go unabsorbed, households feel squeezed, and the social costs accumulate in ways that no government scheme can easily address after the fact.</p>
+
+    <h2 class="subsection">2.2 — The Researcher's Contextual Perspective</h2>
+    <div class="callout insight">
+      <div class="callout-title">Contextual Grounding</div>
+      <p>This report is partially informed by the researcher's exposure to small-business operational environments in Eastern Uttar Pradesh — a region characterised by dense MSME activity, low formal credit penetration, and the persistent financing challenges facing first-generation entrepreneurs. Growing up in proximity to small trading and processing operations in this ecosystem provided an interpretive lens that secondary data alone cannot replicate: an understanding of why seasonal cash-flow pressures feel existential, why bank paperwork feels prohibitive, and why informal lenders remain the default despite their cost. The COVID-19 period (2020–2022) brought these dynamics into sharp relief, as thin liquidity buffers collided with abrupt demand shocks across the region's business community.</p>
+    </div>
+    <p>This contextual awareness allows the analysis to stay grounded in operational reality — a necessary counterweight to the tendency in financial inclusion literature to treat MSME credit gaps as abstract policy problems rather than lived economic constraints.</p>
+
+    <h2 class="subsection">2.3 — Research Objectives</h2>
+    <div class="matrix">
+      <div class="matrix-cell">
+        <div class="matrix-cell-title">Objective A</div>
+        <p>Map the structural and behavioural dimensions of credit friction faced by Indian MSMEs, with emphasis on non-metropolitan markets.</p>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-title">Objective B</div>
+        <p>Analyse working-capital stress cycles and their consequences for business continuity, particularly in manufacturing and trade sectors.</p>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-title">Objective C</div>
+        <p>Assess the current state of digital lending infrastructure and the conditions for its effective adoption among underserved MSME populations.</p>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-title">Objective D</div>
+        <p>Develop evidence-informed policy and institutional recommendations to reduce financing friction and improve credit readiness across the MSME ecosystem.</p>
+      </div>
+    </div>
+
+    <h2 class="subsection">2.4 — Scope &amp; Definitional Boundaries</h2>
+    <p>This report adopts the revised MSME classification introduced under the Atmanirbhar Bharat package (2020), which modified turnover and investment thresholds for micro, small, and medium enterprises. The analysis focuses primarily on manufacturing and services MSMEs operating in Tier 2, Tier 3, and peri-urban markets, with sectoral deep-dives into agro-processing, textiles, and retail trade. The geographic lens emphasises Uttar Pradesh and the broader Indo-Gangetic belt, while situating these observations within the national policy and credit architecture.</p>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">04</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 5 — MSME FINANCING LANDSCAPE
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 03 — MSME Financing Landscape</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 03</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">MSME Financing<br><em>Landscape in India</em></h1>
+
+    <p class="lead">India's MSME financing ecosystem is characterised by a persistent structural duality: an aspirational policy architecture on one side, and a deeply fragmented, access-deficient credit reality on the other.</p>
+
+    <h2 class="subsection">3.1 — The Scale of the Financing Gap</h2>
+    <p>The International Finance Corporation (IFC) estimated India's MSME finance gap at approximately USD 380–530 billion as of the early 2020s — one of the largest such gaps among G20 economies in absolute terms. This figure represents the difference between estimated credit demand from creditworthy MSMEs and actual formal credit supply. SIDBI's MSME Pulse reports have consistently corroborated the magnitude of this shortfall, noting that formal credit penetration among MSME units remains below 16% by enterprise count.</p>
+
+    <div class="stat-row cols-3" style="margin:5mm 0;">
+      <div class="stat-box red">
+        <div class="stat-label">Finance Gap (IFC Est.)</div>
+        <div class="stat-value">$530B</div>
+        <div class="stat-note">Upper bound, MSME unmet credit demand</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">MSME Credit / GDP</div>
+        <div class="stat-value">~14%</div>
+        <div class="stat-note">vs. 30%+ in advanced economies</div>
+      </div>
+      <div class="stat-box gold">
+        <div class="stat-label">Informal Credit Share</div>
+        <div class="stat-value">~55%</div>
+        <div class="stat-note">Estimated share of MSME borrowing from informal sources</div>
+      </div>
+    </div>
+
+    <h2 class="subsection">3.2 — Credit Supply Architecture</h2>
+    <p>Formal MSME credit in India is supplied through a layered institutional structure comprising scheduled commercial banks (SCBs), regional rural banks (RRBs), small finance banks (SFBs), non-banking financial companies (NBFCs), and microfinance institutions (MFIs). Each tier serves a distinct MSME segment, though significant gaps persist — particularly for enterprises in the Rs. 10 lakh to Rs. 2 crore borrowing range, often termed the "missing middle" of credit markets.</p>
+
+    <div class="table-container">
+      <div class="table-caption">Table 3.1 — MSME Credit Supply by Institutional Category</div>
+      <table>
+        <thead><tr><th>Institution Type</th><th>Primary MSME Segment</th><th>Typical Ticket Size</th><th>Collateral Requirement</th><th>Reach (Est.)</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Public Sector Banks</td><td>Small &amp; Medium Enterprises</td><td class="num">₹10L – ₹10Cr</td><td>High (property/equipment)</td><td>Metro / Tier 1–2</td></tr>
+          <tr><td class="bold">Private Sector Banks</td><td>Medium &amp; Growth Enterprises</td><td class="num">₹25L – ₹25Cr</td><td>High</td><td>Urban / Tier 1</td></tr>
+          <tr><td class="bold">Small Finance Banks</td><td>Micro &amp; Small Enterprises</td><td class="num">₹1L – ₹25L</td><td>Low-Medium</td><td>Tier 2–4</td></tr>
+          <tr><td class="bold">NBFCs</td><td>Underserved MSMEs</td><td class="num">₹50K – ₹50L</td><td>Low-Medium</td><td>Tier 2–4, Rural</td></tr>
+          <tr><td class="bold">MFIs</td><td>Micro Enterprises</td><td class="num">₹10K – ₹5L</td><td>Group guarantee</td><td>Semi-urban / Rural</td></tr>
+          <tr><td class="bold">Digital Lenders</td><td>Micro &amp; Small (GST-filers)</td><td class="num">₹25K – ₹10L</td><td>Cash-flow based</td><td>Digital-enabled</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="subsection">3.3 — Priority Sector Lending Framework</h2>
+    <p>The RBI's Priority Sector Lending framework requires scheduled commercial banks to direct 40% of their adjusted net bank credit toward designated priority sectors, with specific sub-targets for MSMEs and agriculture. In theory, this creates a structural push toward MSME lending. In practice, banks can satisfy their PSL obligations through the purchase of MSME loan portfolios or priority sector certificates from other lenders — a legitimate but largely mechanical compliance path that does little to deepen credit access at the enterprise level in underserved geographies.</p>
+
+    <blockquote class="pull-quote">
+      <p>"The MSME financing gap in India is not a problem of aggregate capital insufficiency — it is a problem of distribution architecture, information infrastructure, and institutional incentive alignment."</p>
+      <cite>Synthesised analytical position — India SME Credit Intelligence Observatory, 2025</cite>
+    </blockquote>
+
+    <div class="callout warning">
+      <div class="callout-title">Structural Vulnerability</div>
+      <p>The "missing middle" — enterprises too large for microfinance but too small and informal for commercial bank credit — remains the most chronically underserved segment. Enterprises in this range (typically turnover of Rs. 20 lakh to Rs. 2 crore) represent the largest share of job creation and value addition in non-metropolitan markets, yet face the steepest barriers to formal credit.</p>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">05</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 6 — MSME LANDSCAPE CONT.
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 03 — MSME Financing Landscape (Cont.)</span>
+  </div>
+  <div class="page-inner">
+    <h2 class="subsection">3.4 — Government Credit Intervention Programmes</h2>
+    <p>The Indian government has deployed a series of targeted credit interventions to bridge the formal financing gap, with varying degrees of implementation fidelity and impact.</p>
+
+    <div class="table-container">
+      <div class="table-caption">Table 3.2 — Key Government MSME Credit Schemes</div>
+      <table>
+        <thead><tr><th>Scheme / Programme</th><th>Launch</th><th>Objective</th><th>Mechanism</th><th>Implementation Status</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">CGTMSE</td><td class="num">2000</td><td>Collateral-free credit up to ₹2Cr</td><td>Credit guarantee to lenders</td><td class="green">Active — Expanded</td></tr>
+          <tr><td class="bold">MUDRA (PMMY)</td><td class="num">2015</td><td>Micro enterprise credit access</td><td>Refinance via banks/NBFCs</td><td class="green">Active — High volume</td></tr>
+          <tr><td class="bold">SIDBI Direct Lending</td><td class="num">Ongoing</td><td>Small enterprise term credit</td><td>Direct NBFC partnerships</td><td class="green">Active</td></tr>
+          <tr><td class="bold">ECLGS (Emergency)</td><td class="num">2020</td><td>COVID liquidity support</td><td>100% GOI-guaranteed credit</td><td class="gold">Closed — Disbursed ₹3.6T</td></tr>
+          <tr><td class="bold">GeM Portal Credit</td><td class="num">2016</td><td>Supply chain credit for govt vendors</td><td>Invoice discounting via banks</td><td class="green">Active — Growing</td></tr>
+          <tr><td class="bold">TReDS Platform</td><td class="num">2017</td><td>MSME invoice financing</td><td>3-party e-discounting exchange</td><td class="gold">Active — Limited adoption</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout key-finding" style="margin-top:5mm;">
+      <div class="callout-title">Key Finding — Programme Efficacy</div>
+      <p>While government credit schemes have collectively channelled substantial resources into the MSME sector, systemic efficacy is constrained by awareness gaps (particularly in Tier 3 and rural markets), administrative complexity, and last-mile distribution failures. The Emergency Credit Line Guarantee Scheme (ECLGS), launched during COVID-19, demonstrated both the system's capacity for rapid credit deployment and its structural dependency on pre-existing bank relationships — thereby excluding enterprises without prior formal banking histories.</p>
+    </div>
+
+    <h2 class="subsection">3.5 — Demand-Side Constraints</h2>
+    <p>MSME credit access failure is not solely a supply-side phenomenon. Significant demand-side constraints reduce effective credit utilisation even when formal channels are accessible.</p>
+
+    <div class="two-col">
+      <div>
+        <h3 class="sub-subsection">Structural Demand Barriers</h3>
+        <ul class="report-list">
+          <li>Inadequate financial record-keeping limits formal credit eligibility assessment</li>
+          <li>Reluctance to disclose full business turnover due to tax compliance concerns</li>
+          <li>Limited awareness of available credit schemes and eligibility criteria</li>
+          <li>Cultural preference for informal credit networks with greater flexibility</li>
+          <li>Fear of collateral loss in event of business downturn</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="sub-subsection">Behavioural Demand Barriers</h3>
+        <ul class="report-list">
+          <li>Prior negative bank interaction experiences creating institutional distrust</li>
+          <li>Perceived complexity and document burden of formal loan applications</li>
+          <li>Short-termism in credit planning — reactive rather than anticipatory borrowing</li>
+          <li>Language and literacy barriers in formal banking communication</li>
+          <li>Over-reliance on trade credit from suppliers as working-capital substitute</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">06</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 7 — CREDIT FRICTION FRAMEWORK
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 04 — Credit Friction Framework</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 04</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">Credit Friction<br><em>Framework</em></h1>
+
+    <p class="lead">The Credit Friction Framework synthesises the multi-layered barriers that prevent creditworthy MSMEs from accessing formal financing. It moves beyond single-cause analysis to map the interdependencies between structural, informational, institutional, and behavioural friction dimensions.</p>
+
+    <h2 class="subsection">4.1 — Framework Architecture</h2>
+    <p>The framework identifies four primary friction categories, each operating at a distinct systemic level. Together, they create a compounding barrier effect — where each dimension reinforces the others, making partial solutions insufficient without systemic intervention.</p>
+
+    <div class="framework-row" style="margin:5mm 0;">
+      <div class="framework-node">
+        <div class="fn-label">Layer 01</div>
+        <div class="fn-title">Structural Friction</div>
+        <div class="fn-sub">Collateral regimes, risk-weighting, regulatory capital</div>
+      </div>
+      <div class="framework-node">
+        <div class="fn-label">Layer 02</div>
+        <div class="fn-title">Informational Friction</div>
+        <div class="fn-sub">Credit history, financial records, tax compliance data</div>
+      </div>
+      <div class="framework-node">
+        <div class="fn-label">Layer 03</div>
+        <div class="fn-title">Institutional Friction</div>
+        <div class="fn-sub">Lender capacity, branch reach, product design</div>
+      </div>
+      <div class="framework-node">
+        <div class="fn-label">Layer 04</div>
+        <div class="fn-title">Behavioural Friction</div>
+        <div class="fn-sub">Trust, awareness, financial capability</div>
+      </div>
+    </div>
+
+    <h2 class="subsection">4.2 — Structural Friction: Collateral &amp; Risk Architecture</h2>
+    <p>India's credit risk architecture was historically designed around large-enterprise and agricultural borrowers — both of which possess identifiable, immovable collateral assets. MSMEs, by contrast, operate with working assets (inventory, receivables, equipment) that are difficult to pledge under conventional mortgage-based lending frameworks. The Basel III capital adequacy requirements, as adopted by RBI, impose higher risk weights on unsecured MSME loans, creating a capital cost disincentive for lenders that is not offset by interest rate premiums in a competitive lending environment.</p>
+
+    <div class="table-container">
+      <div class="table-caption">Table 4.1 — Credit Friction Dimension Analysis</div>
+      <table>
+        <thead><tr><th>Friction Dimension</th><th>Primary Driver</th><th>Affected MSME Segment</th><th>Severity</th><th>Policy Addressability</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Collateral Deficiency</td><td>Asset ownership patterns</td><td>Micro, Small</td><td class="heat-high">High</td><td>CGTMSE, guarantee schemes</td></tr>
+          <tr><td class="bold">Thin Credit History</td><td>Informal operating history</td><td>Micro, Small</td><td class="heat-high">High</td><td>AA framework, GST data</td></tr>
+          <tr><td class="bold">Financial Record Opacity</td><td>Informal bookkeeping</td><td>Micro</td><td class="heat-high">High</td><td>Account digitisation</td></tr>
+          <tr><td class="bold">Lender Risk Aversion</td><td>NPA experience, capital cost</td><td>All small enterprises</td><td class="heat-medium">Medium</td><td>Risk-sharing instruments</td></tr>
+          <tr><td class="bold">Geographic Credit Desert</td><td>Branch/NBFC distribution</td><td>Tier 3 / Rural</td><td class="heat-high">High</td><td>Digital lending, BC model</td></tr>
+          <tr><td class="bold">Awareness &amp; Trust Deficit</td><td>Scheme complexity, past friction</td><td>First-gen entrepreneurs</td><td class="heat-medium">Medium</td><td>Financial literacy programs</td></tr>
+          <tr><td class="bold">Documentation Burden</td><td>KYC/AML compliance demands</td><td>Micro, Informal</td><td class="heat-medium">Medium</td><td>eKYC, Aadhaar integration</td></tr>
+          <tr><td class="bold">Interest Rate Opacity</td><td>Informal lender opacity</td><td>Micro (informal borrowers)</td><td class="heat-medium">Medium</td><td>Rate transparency mandates</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="subsection">4.3 — Informational Friction: The Credit Visibility Problem</h2>
+    <p>A fundamental asymmetry exists between lenders' need for creditworthiness signals and MSMEs' ability to generate them. In formal enterprise credit assessment, lenders typically require audited financial statements, income tax return histories, and banking transaction records. Many micro and small enterprises — particularly those with annual turnovers below Rs. 40 lakh — operate without formal accounting systems, file GST returns irregularly, and maintain bank accounts primarily for basic transaction needs rather than as credit-building instruments. The result is a creditworthiness signal deficit that renders otherwise viable businesses functionally invisible to formal lenders.</p>
+
+    <div class="callout insight">
+      <div class="callout-title">Emerging Solution — GST &amp; Account Aggregator Data</div>
+      <p>The introduction of GST in 2017 created, for the first time, a large-scale formal transaction record for previously informal enterprises. Digital lenders and fintech-enabled NBFCs have begun using GST filing histories as proxies for revenue streams in credit decisioning — a significant infrastructure advance. The Account Aggregator (AA) framework, operationalised from 2021 onwards, further enables consented real-time financial data sharing between enterprises and lenders, reducing informational friction substantially for digitally-active MSMEs.</p>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">07</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 8 — CREDIT FRICTION CONT.
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 04 — Credit Friction Framework (Cont.)</span>
+  </div>
+  <div class="page-inner">
+    <h2 class="subsection">4.4 — Institutional Friction: Lender Capability &amp; Incentives</h2>
+    <p>MSME lending is operationally intensive relative to large-ticket corporate lending. Credit appraisal for small enterprises requires field investigation, qualitative judgment, and higher per-loan transaction costs — none of which scale efficiently under traditional banking models. Public sector banks, which collectively hold the largest share of MSME credit portfolios, have historically under-invested in MSME-specific underwriting capabilities, loan officer training, and product design. The result is a mismatch between MSME borrowing needs (flexible, short-tenor, working-capital instruments) and lender product offerings (term loans requiring fixed asset collateral).</p>
+
+    <div class="chart-placeholder">
+      <div class="chart-placeholder-inner">
+        <div class="chart-label">Figure 4.1 — Illustrative Chart</div>
+        <div class="chart-title">MSME Credit Product-Need Mismatch Index by Institution Type</div>
+        <div class="chart-desc">A comparative bar analysis illustrating the gap between preferred MSME borrowing instruments (working capital, invoice financing, revolving credit) and actual product availability across institutional categories. Public sector banks show the greatest mismatch; digital NBFCs the lowest.</div>
+        <div class="chart-viz">
+          <div class="bar" style="height:45%;"><span class="bar-label">PSB</span></div>
+          <div class="bar" style="height:38%;"><span class="bar-label">PVT</span></div>
+          <div class="bar active" style="height:52%;"><span class="bar-label">RRB</span></div>
+          <div class="bar" style="height:30%;"><span class="bar-label">SFB</span></div>
+          <div class="bar highlight" style="height:20%;"><span class="bar-label">NBFC</span></div>
+          <div class="bar highlight" style="height:15%;"><span class="bar-label">Fintech</span></div>
+          <div class="bar active" style="height:42%;"><span class="bar-label">MFI</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="subsection">4.5 — Behavioural Friction: Trust, Awareness &amp; Financial Capability</h2>
+    <p>The demand-side of credit friction includes a significant behavioural dimension that is often underestimated in policy analysis. First-generation entrepreneurs in Tier 3 and rural markets frequently enter business life with limited exposure to formal financial institutions, no inherited credit history, and experiential knowledge of informal lending relationships that — while costly — offer familiarity and flexibility. The psychological cost of navigating unfamiliar institutional processes (application forms, documentation requirements, banker interviews) acts as a real friction on credit demand.</p>
+
+    <h2 class="subsection">4.6 — The Friction Compounding Effect</h2>
+    <p>The most analytically significant insight from the framework is the compounding relationship between friction layers. An enterprise that lacks collateral (structural friction) is also likely to operate informally (informational friction), which limits its attractiveness to lenders (institutional friction), which perpetuates its reliance on informal credit relationships (behavioural friction). Each layer reinforces the others, creating a self-sustaining exclusion cycle that cannot be resolved by single-dimension interventions.</p>
+
+    <div class="callout warning">
+      <div class="callout-title">Compounding Friction Risk — Tier 3 Enterprise Profile</div>
+      <p>A micro-enterprise in Padrauna, UP illustrates this compounding clearly: it operates from a rented premises (no immovable collateral), files GST irregularly (thin formal financial record), is located beyond the branch catchment area of most commercial banks (geographic credit desert), and has had a loan application rejected once in the past (behavioural distrust). Each friction layer is individually addressable — but all must be addressed simultaneously for credit access to materialise.</p>
+    </div>
+
+    <div class="chart-placeholder">
+      <div class="chart-placeholder-inner">
+        <div class="chart-label">Figure 4.2 — Analytical Framework Diagram</div>
+        <div class="chart-title">Credit Friction Compounding Cycle — Conceptual Model</div>
+        <div class="chart-desc">A circular systems diagram showing the reinforcing loop between structural collateral deficiency → informational opacity → lender avoidance → informal credit dependence → continued informality → renewed collateral deficiency. Intervention entry points are marked at each node, corresponding to CGTMSE expansion, AA-enabled data sharing, NBFC outreach, and financial literacy programmes.</div>
+      </div>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">08</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 9 — WORKING CAPITAL STRESS ANALYSIS
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 05 — Working-Capital Stress Analysis</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 05</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">Working-Capital<br><em>Stress Analysis</em></h1>
+
+    <p class="lead">Working-capital stress is the proximate cause of most MSME operational failures. Understanding its mechanics — particularly the receivables-payables mismatch that drives liquidity crises — is foundational to any effective credit system design.</p>
+
+    <h2 class="subsection">5.1 — The Working-Capital Cycle in MSME Context</h2>
+    <p>The working-capital cycle describes the time elapsed between a business deploying cash into production or purchase activities and recovering that cash through customer payments. For MSMEs, this cycle is frequently extended and structurally unfavourable. As buyers in supply chains, MSMEs often face demands for early or immediate payment to suppliers. As sellers, they extend payment terms of 30 to 120 days to larger buyers. The result is a systematic cash-flow squeeze that requires either internal reserves or external financing to bridge — both of which are constrained for most small enterprises.</p>
+
+    <div class="stat-row cols-3">
+      <div class="stat-box red">
+        <div class="stat-label">Avg. Receivable Days (Mfg. MSME)</div>
+        <div class="stat-value">78d</div>
+        <div class="stat-note">Days Sales Outstanding — est. from SIDBI/IFC surveys</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Avg. Payable Days</div>
+        <div class="stat-value">22d</div>
+        <div class="stat-note">Days Payable Outstanding — smaller suppliers paid faster</div>
+      </div>
+      <div class="stat-box gold">
+        <div class="stat-label">Net Cash Conversion Gap</div>
+        <div class="stat-value">56d</div>
+        <div class="stat-note">Days of unsupported operating cash need</div>
+      </div>
+    </div>
+
+    <h2 class="subsection">5.2 — Payment Delay in B2B Supply Chains</h2>
+    <p>Payment delays from large buyers represent the single most pervasive working-capital stressor for manufacturing and services MSMEs. India lacks a universal statutory payment discipline framework equivalent to the EU's Late Payments Directive, though the MSMED Act 2006 contains provisions for interest on delayed payments that are frequently unenforced. Large corporates — both private and government — routinely extend payment terms beyond 45 days with MSME suppliers, a practice that effectively transfers the cost of working-capital financing from the buyer's balance sheet to the supplier's cash position.</p>
+
+    <div class="chart-placeholder">
+      <div class="chart-placeholder-inner">
+        <div class="chart-label">Figure 5.1 — Bar Chart Illustration</div>
+        <div class="chart-title">Payment Delay Distribution Among MSME Suppliers — By Buyer Category</div>
+        <div class="chart-desc">Stacked horizontal bar chart showing payment delay frequency across buyer categories: Government/PSU (highest delay concentration at 90+ days), Large Private Corporates (60–90 days), Mid-Corporate Buyers (30–60 days), and MSMEs-as-buyers (typically 0–30 days). Delay distribution shifts dramatically by sector — construction and public works most affected.</div>
+        <div class="chart-viz">
+          <div style="display:flex; flex-direction:column; gap:3mm; flex:1;">
+            <div class="progress-row"><span class="progress-label">Government / PSU</span><div class="progress-bar-track"><div class="progress-bar-fill red" style="width:88%;"></div></div><span class="progress-val">88%</span></div>
+            <div class="progress-row"><span class="progress-label">Large Private Sector</span><div class="progress-bar-track"><div class="progress-bar-fill red" style="width:64%;"></div></div><span class="progress-val">64%</span></div>
+            <div class="progress-row"><span class="progress-label">Mid-Corporate</span><div class="progress-bar-track"><div class="progress-bar-fill gold" style="width:45%;"></div></div><span class="progress-val">45%</span></div>
+            <div class="progress-row"><span class="progress-label">MSME-to-MSME</span><div class="progress-bar-track"><div class="progress-bar-fill" style="width:28%;"></div></div><span class="progress-val">28%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="subsection">5.3 — Working-Capital Stress Classification</h2>
+    <div class="table-container">
+      <div class="table-caption">Table 5.1 — MSME Working-Capital Stress Typology</div>
+      <table>
+        <thead><tr><th>Stress Type</th><th>Trigger Mechanism</th><th>Frequency</th><th>Severity</th><th>Typical Response</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Receivables Compression</td><td>Large buyer payment delays</td><td>Chronic</td><td class="heat-high">High</td><td>Informal borrowing, creditor delays</td></tr>
+          <tr><td class="bold">Seasonal Cash Trough</td><td>Demand seasonality, festival cycles</td><td>Periodic</td><td class="heat-medium">Medium</td><td>Pre-season borrowing, inventory reduction</td></tr>
+          <tr><td class="bold">Supply Shock</td><td>Input price spikes, supplier disruption</td><td>Episodic</td><td class="heat-high">High</td><td>Order curtailment, distress purchasing</td></tr>
+          <tr><td class="bold">Tax &amp; Compliance Outflow</td><td>GST payment timing, advance tax</td><td>Periodic</td><td class="heat-medium">Medium</td><td>Short-term informal borrowing</td></tr>
+          <tr><td class="bold">Demand Collapse</td><td>Macro shocks (COVID, demonetisation)</td><td>Rare / acute</td><td class="heat-high">Critical</td><td>Emergency credit, layoffs, closure risk</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">09</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 10 — OPERATIONAL LIQUIDITY STRESS MODEL
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 06 — Operational Liquidity Stress Model</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 06</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">Operational Liquidity<br><em>Stress Model</em></h1>
+
+    <p class="lead">The Operational Liquidity Stress Model (OLSM) provides a structured analytical lens for assessing the depth, duration, and recovery dynamics of liquidity crises at the enterprise level, with application to typical MSME operating profiles in non-metropolitan Indian markets.</p>
+
+    <h2 class="subsection">6.1 — Model Architecture</h2>
+    <p>The OLSM operates across three analytical dimensions: liquidity depth (how severe is the cash shortfall), liquidity duration (how long can the enterprise sustain operations under stress), and recovery pathway (what mechanism exists to restore operating liquidity). The model draws on operational archetypes derived from secondary research on Indian MSME cash-flow patterns.</p>
+
+    <div class="matrix">
+      <div class="matrix-cell" style="border-top:2pt solid var(--accent);">
+        <div class="matrix-cell-title">Dimension 1 — Liquidity Depth</div>
+        <p>Measured as the ratio of delayed receivables to monthly operating cost obligation. An enterprise with Rs. 3L in overdue receivables and Rs. 1L/month in fixed obligations faces a depth ratio of 3.0 — meaning 3 months of operating cash is effectively frozen.</p>
+      </div>
+      <div class="matrix-cell" style="border-top:2pt solid var(--gold);">
+        <div class="matrix-cell-title">Dimension 2 — Liquidity Duration</div>
+        <p>Measured as the number of months an enterprise can sustain operations using existing reserves, available informal credit, and receivable acceleration — before operational curtailment or closure becomes necessary.</p>
+      </div>
+      <div class="matrix-cell" style="border-top:2pt solid var(--green-ok);">
+        <div class="matrix-cell-title">Dimension 3 — Recovery Pathway</div>
+        <p>Classified as: Autonomous (internal recovery via receivable collection), Supported (rescue via formal or informal credit), or Structural (requiring business model adaptation or partial restructuring).</p>
+      </div>
+      <div class="matrix-cell" style="border-top:2pt solid var(--red-stress);">
+        <div class="matrix-cell-title">Dimension 4 — Stress Escalation Risk</div>
+        <p>Probability that a liquidity stress event escalates to solvency stress — factoring supplier relationship fragility, workforce retention risk, and reputational capital with key customers.</p>
+      </div>
+    </div>
+
+    <h2 class="subsection">6.2 — OLSM Enterprise Profiles</h2>
+    <div class="table-container">
+      <div class="table-caption">Table 6.1 — Liquidity Stress Profile by MSME Archetype</div>
+      <table>
+        <thead><tr><th>Enterprise Archetype</th><th>Typical Sector</th><th>Depth Ratio</th><th>Duration (Months)</th><th>Recovery Path</th><th>Escalation Risk</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Sub-contractor to large corp.</td><td>Construction / Mfg.</td><td class="num heat-high">4.2x</td><td class="num">1.5</td><td>Supported</td><td class="red">High</td></tr>
+          <tr><td class="bold">FMCG distributor</td><td>Retail / FMCG</td><td class="num heat-medium">2.1x</td><td class="num">2.5</td><td>Autonomous</td><td class="gold">Medium</td></tr>
+          <tr><td class="bold">Rice / agro-processor</td><td>Food Processing</td><td class="num heat-medium">2.8x</td><td class="num">1.8</td><td>Supported</td><td class="red">High</td></tr>
+          <tr><td class="bold">Textile job-worker</td><td>Garments / Textile</td><td class="num heat-high">3.5x</td><td class="num">1.2</td><td>Structural</td><td class="red">High</td></tr>
+          <tr><td class="bold">Retail shop owner</td><td>Local Retail Trade</td><td class="num heat-low">1.3x</td><td class="num">3.5</td><td>Autonomous</td><td class="gold">Low-Med</td></tr>
+          <tr><td class="bold">Software / IT services</td><td>Services (Urban)</td><td class="num heat-low">1.8x</td><td class="num">4.0</td><td>Autonomous</td><td class="green">Low</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="subsection">6.3 — COVID-19 as Stress Model Case Study</h2>
+    <p>The COVID-19 disruption period (March 2020 – March 2022) offers the most analytically rich recent test case for the OLSM. The simultaneous collapse of demand, supply chain disruption, and working-capital freeze created a compound stress event that exceeded the resilience parameters of a majority of micro and small enterprises. RBI's moratorium on loan repayments and the ECLGS emergency credit scheme provided temporary relief but could not compensate for the structural absence of operating liquidity buffers in the MSME sector.</p>
+
+    <div class="callout warning">
+      <div class="callout-title">COVID-19 Structural Lesson</div>
+      <p>MSME enterprises with access to formal working-capital credit lines prior to March 2020 demonstrated significantly higher survival rates than comparable enterprises relying on informal credit or personal savings. This underscores that working-capital credit is not merely a growth instrument but a fundamental resilience mechanism — making its inaccessibility a structural vulnerability for the broader economy.</p>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">11</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 11 — SECTOR-WISE ANALYSIS
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 07 — Sector-wise Financing Stress Analysis</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 07</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">Sector-wise Financing<br><em>Stress Analysis</em></h1>
+    <p class="lead">Financing stress is not uniformly distributed across the MSME sector. Structural characteristics — capital intensity, supply chain position, payment cycle length, and regulatory environment — produce distinct stress profiles across sectors.</p>
+
+    <div class="table-container">
+      <div class="table-caption">Table 7.1 — Sector-wise Credit &amp; Working-Capital Stress Index</div>
+      <table>
+        <thead><tr><th>Sector</th><th>Credit Access</th><th>WC Cycle (Days)</th><th>Collateral Profile</th><th>Digital Readiness</th><th>Overall Stress</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Manufacturing (Light)</td><td class="gold">Moderate</td><td class="num heat-high">65–90</td><td>Equipment-backed</td><td class="badge medium">Medium</td><td class="heat-high">High</td></tr>
+          <tr><td class="bold">Agro-processing</td><td class="red">Low</td><td class="num heat-high">80–120</td><td>Seasonal / Thin</td><td class="badge medium">Low</td><td class="heat-high">Critical</td></tr>
+          <tr><td class="bold">Textile &amp; Garments</td><td class="red">Low</td><td class="num heat-high">70–100</td><td>Equipment-backed</td><td class="badge medium">Low-Med</td><td class="heat-high">High</td></tr>
+          <tr><td class="bold">Wholesale Trade</td><td class="gold">Moderate</td><td class="num heat-medium">45–75</td><td>Inventory-backed</td><td class="badge medium">Medium</td><td class="heat-medium">Medium</td></tr>
+          <tr><td class="bold">Retail Trade</td><td class="gold">Low-Mod</td><td class="num heat-low">15–45</td><td>None / Thin</td><td class="badge medium">Medium</td><td class="heat-medium">Medium</td></tr>
+          <tr><td class="bold">Construction (sub-cont.)</td><td class="red">Low</td><td class="num heat-high">90–180</td><td>None</td><td class="badge medium">Low</td><td class="heat-high">Critical</td></tr>
+          <tr><td class="bold">IT / Digital Services</td><td class="green">Good</td><td class="num heat-low">30–60</td><td>None (cash-flow)</td><td class="badge improving">High</td><td class="heat-low">Low</td></tr>
+          <tr><td class="bold">Food &amp; Beverages</td><td class="gold">Moderate</td><td class="num heat-medium">30–60</td><td>Equipment / inventory</td><td class="badge medium">Medium</td><td class="heat-medium">Medium</td></tr>
+          <tr><td class="bold">Transport &amp; Logistics</td><td class="gold">Moderate</td><td class="num heat-medium">30–60</td><td>Vehicle-backed</td><td class="badge improving">Improving</td><td class="heat-medium">Medium</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="subsection">7.1 — Deep Dive: Agro-processing Sector</h2>
+    <p>Agro-processing MSMEs in states like Uttar Pradesh, Bihar, and Punjab represent among the most financially stressed business segments in India. The sector's financing challenges are compounded by seasonal revenue concentration (peak procurement during harvest months, extended off-season cash troughs), perishability-driven inventory risk, and a dependence on government procurement channels (particularly for paddy/rice) that introduce payment delay risks parallel to the construction sector. Credit from formal lenders requires warehouse receipts or hypothecation of agricultural produce — instruments that many small processors cannot readily deploy.</p>
+
+    <div class="callout key-finding">
+      <div class="callout-title">Sector Finding — Agro-Processing</div>
+      <p>A small rice miller in Eastern UP with turnover of Rs. 80–120 lakh annually may face a working-capital requirement of Rs. 30–40 lakh during the October-January Kharif procurement season — an amount that exceeds the effective credit ceiling available through MUDRA or standard NABARD-linked products. The gap is typically bridged through commission agents (arhatiyas) at effective interest rates of 24–36% per annum, constituting a significant profitability drain.</p>
+    </div>
+
+    <h2 class="subsection">7.2 — Construction Sub-contractors: The Most Vulnerable Segment</h2>
+    <p>Civil construction sub-contractors represent perhaps the most acute financing stress case in the MSME universe. They operate in a business model characterised by: large upfront material and labour expenditures, progress-billing payment schedules dictated by principal contractors, frequent payment disputes and retention amounts withheld for 6–12 months, and no fixed assets to offer as collateral (as construction assets belong to the project site). The combination of long cash conversion cycles, high capital intensity, and zero collateral profile makes this segment structurally invisible to formal lenders despite representing significant economic activity.</p>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">13</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 12 — STATE-WISE CREDIT READINESS
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 08 — State-wise Credit Readiness</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 08</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">State-wise Credit<br><em>Readiness Comparison</em></h1>
+    <p class="lead">Credit access for MSMEs is profoundly shaped by state-level institutional environment, banking infrastructure density, regulatory implementation quality, and digital ecosystem maturity — creating wide disparities in effective credit availability across India's states.</p>
+
+    <div class="table-container">
+      <div class="table-caption">Table 8.1 — State Credit Readiness Index (Composite — Illustrative Framework)</div>
+      <table>
+        <thead><tr><th>State</th><th>MSME Population (Est.)</th><th>Bank Branch / 1L Pop.</th><th>NBFC Presence</th><th>Digital Penetration</th><th>Formal Credit Penetration</th><th>Credit Readiness Score</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Maharashtra</td><td>6.5M+</td><td class="num">28</td><td class="green">High</td><td class="green">High</td><td class="green">~22%</td><td class="heat-low">7.8 / 10</td></tr>
+          <tr><td class="bold">Gujarat</td><td>4.5M+</td><td class="num">24</td><td class="green">High</td><td class="green">High</td><td class="green">~20%</td><td class="heat-low">7.5 / 10</td></tr>
+          <tr><td class="bold">Tamil Nadu</td><td>4.8M+</td><td class="num">26</td><td class="green">High</td><td class="green">High</td><td class="green">~19%</td><td class="heat-low">7.4 / 10</td></tr>
+          <tr><td class="bold">Karnataka</td><td>3.8M+</td><td class="num">22</td><td class="gold">Medium-High</td><td class="green">High</td><td class="green">~18%</td><td class="heat-low">7.1 / 10</td></tr>
+          <tr><td class="bold">Uttar Pradesh</td><td>8.9M+</td><td class="num">14</td><td class="gold">Medium</td><td class="gold">Medium</td><td class="red">~9%</td><td class="heat-high">4.2 / 10</td></tr>
+          <tr><td class="bold">Bihar</td><td>4.2M+</td><td class="num">11</td><td class="red">Low</td><td class="red">Low-Med</td><td class="red">~7%</td><td class="heat-high">3.5 / 10</td></tr>
+          <tr><td class="bold">Madhya Pradesh</td><td>3.5M+</td><td class="num">13</td><td class="gold">Medium</td><td class="gold">Medium</td><td class="red">~8%</td><td class="heat-high">3.8 / 10</td></tr>
+          <tr><td class="bold">Rajasthan</td><td>3.2M+</td><td class="num">16</td><td class="gold">Medium</td><td class="gold">Medium</td><td class="gold">~12%</td><td class="heat-medium">5.0 / 10</td></tr>
+          <tr><td class="bold">West Bengal</td><td>5.6M+</td><td class="num">18</td><td class="gold">Medium</td><td class="gold">Medium</td><td class="gold">~14%</td><td class="heat-medium">5.3 / 10</td></tr>
+          <tr><td class="bold">Punjab / Haryana</td><td>2.8M+</td><td class="num">21</td><td class="gold">Medium-High</td><td class="green">High</td><td class="gold">~16%</td><td class="heat-medium">6.0 / 10</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warning" style="margin-top:5mm;">
+      <div class="callout-title">Credit Geography Paradox — Uttar Pradesh</div>
+      <p>Uttar Pradesh is simultaneously India's most populous state, its largest MSME-population state (estimated 8.9 million units), and among the lowest in formal credit penetration. Despite concentrated policy attention through schemes like UP MSME Policy 2022 and ODOP (One District One Product), banking infrastructure density (bank branches per lakh population) remains below the national average, NBFC presence in Tier 3 and rural districts is sparse, and digital lending adoption is constrained by connectivity and literacy gaps. The state represents both the largest financing gap in absolute terms and the highest-potential market for structured credit infrastructure intervention.</p>
+    </div>
+
+    <h2 class="subsection">8.1 — Credit Readiness Scoring Dimensions</h2>
+    <p>The composite Credit Readiness Score reflects five weighted dimensions: banking infrastructure density (25%), NBFC and alternative lender ecosystem (20%), digital financial inclusion penetration (20%), formal MSME credit utilisation rate (25%), and institutional programme implementation quality (10%). Scores are indicative rather than statistically precise — they represent analytical synthesis from public institutional data sources.</p>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">15</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 13 — DIGITAL LENDING INFRASTRUCTURE
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 09 — Digital Lending Infrastructure</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 09</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">Digital Lending<br><em>Infrastructure Analysis</em></h1>
+
+    <p class="lead">India has assembled, over the past decade, a digital financial architecture that would strike most development economists as genuinely remarkable. The question now is whether that architecture can reach the enterprises that need it most — those operating in Tier 3 towns, semi-urban clusters, and agri-processing belts where smartphones are present but digital financial habits are not yet formed.</p>
+
+    <h2 class="subsection">9.1 — India Stack for MSME Finance</h2>
+    <p>The "India Stack" — built layer by layer across Aadhaar (identity authentication), UPI (payments and transaction records), DigiLocker (document verification), and the Account Aggregator framework (consented financial data sharing) — provides the technical foundation for a genuinely different kind of MSME credit ecosystem. Each layer solves a specific piece of the information problem. Taken together, they create the infrastructure conditions for lending decisions that do not depend on physical collateral or decades of relationship history.</p>
+
+    <div class="framework-row">
+      <div class="framework-node" style="border-top:2pt solid var(--accent);">
+        <div class="fn-label">Layer 1 — Identity</div>
+        <div class="fn-title">Aadhaar / eKYC</div>
+        <div class="fn-sub">Instant identity verification; eliminates branch visit requirement</div>
+      </div>
+      <div class="framework-node" style="border-top:2pt solid var(--gold);">
+        <div class="fn-label">Layer 2 — Payments</div>
+        <div class="fn-title">UPI / IMPS</div>
+        <div class="fn-sub">Real-time transaction history; cash-flow signal for credit underwriting</div>
+      </div>
+      <div class="framework-node" style="border-top:2pt solid var(--green-ok);">
+        <div class="fn-label">Layer 3 — Data</div>
+        <div class="fn-title">Account Aggregator</div>
+        <div class="fn-sub">Consented multi-source financial data sharing for credit decisioning</div>
+      </div>
+      <div class="framework-node" style="border-top:2pt solid var(--accent-mid);">
+        <div class="fn-label">Layer 4 — Credit</div>
+        <div class="fn-title">OCEN / GST Data</div>
+        <div class="fn-sub">Open credit enablement network; GST-based revenue verification</div>
+      </div>
+    </div>
+
+    <h2 class="subsection">9.2 — Digital Lending Platform Landscape</h2>
+    <div class="table-container">
+      <div class="table-caption">Table 9.1 — Digital MSME Lending Platform Categories</div>
+      <table>
+        <thead><tr><th>Platform Category</th><th>Model</th><th>Target Segment</th><th>Data Inputs</th><th>Avg. Ticket</th><th>Maturity</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Fintech NBFC Lenders</td><td>Balance-sheet lending</td><td>GST-registered SMEs</td><td>GST, bank statements, AA</td><td class="num">₹2L–₹25L</td><td class="green">Mature</td></tr>
+          <tr><td class="bold">Embedded Finance</td><td>Platform-linked credit</td><td>E-commerce / B2B sellers</td><td>Platform transaction data</td><td class="num">₹25K–₹5L</td><td class="green">Growing</td></tr>
+          <tr><td class="bold">Invoice Discounting (TReDS)</td><td>3-party exchange</td><td>Corporates' MSME suppliers</td><td>Verified invoices</td><td class="num">₹5L–₹1Cr</td><td class="gold">Nascent</td></tr>
+          <tr><td class="bold">Supply Chain Finance</td><td>Anchor-led</td><td>Tier 1–2 suppliers</td><td>ERP / supply chain data</td><td class="num">₹1L–₹5Cr</td><td class="gold">Growing</td></tr>
+          <tr><td class="bold">OCEN-enabled Lenders</td><td>Protocol-based</td><td>Underserved micro</td><td>AA, UPI, GST, AA data</td><td class="num">₹10K–₹2L</td><td class="gold">Early</td></tr>
+          <tr><td class="bold">Co-lending (Bank+NBFC)</td><td>Risk co-sharing</td><td>Underserved MSME</td><td>Combined underwriting</td><td class="num">₹2L–₹25L</td><td class="green">Active</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="subsection">9.3 — Digital Adoption Constraints</h2>
+    <p>The infrastructure exists; the adoption does not. Among the most credit-deprived MSME segments — small manufacturers, agro-processors, construction sub-contractors — digital lending tools remain largely theoretical. Digital literacy is the first constraint. Smartphone penetration in non-metropolitan India is broad in device count but shallow in financial capability: most small business owners use phones for calls and messaging, not for GST filings or bank statement downloads. Connectivity is the second constraint — patchy enough in many Tier 3 and rural geographies to make real-time data sharing unreliable. And beneath both sits a deeper trust problem: first-generation entrepreneurs are cautious about sharing financial information with systems they do not understand and platforms they have never encountered before.</p>
+
+    <div class="callout insight">
+      <div class="callout-title">Infrastructure vs. Adoption Gap</div>
+      <p>India's digital finance infrastructure is, by global standards, advanced. The Account Aggregator framework, if fully adopted, could resolve the informational friction that currently excludes millions of viable MSMEs from formal credit. The gap is not infrastructure but adoption — specifically, the trust-building and capability-development work required to bring first-generation entrepreneurs in non-metropolitan markets into the digital credit ecosystem. This is a human and institutional challenge, not a technology challenge.</p>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">17</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 14 — MODERNIZATION CHALLENGES
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 10 — MSME Financing Modernization Challenges</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 10</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">MSME Financing<br><em>Modernization Challenges</em></h1>
+
+    <p class="lead">The modernization of India's MSME financing ecosystem is a multi-dimensional challenge that extends well beyond technology deployment. It encompasses regulatory reform, institutional capacity building, behavioural change at the enterprise level, and the design of financially inclusive products that genuinely serve the operational realities of small businesses.</p>
+
+    <h2 class="subsection">10.1 — The Seven Modernization Challenges</h2>
+
+    <h3 class="sub-subsection">Challenge 1 — Data Fragmentation</h3>
+    <p>MSME financial data is distributed across multiple siloed systems: GST returns with the GSTN, bank statements with individual banks, income tax records with CBDT, Udyam registration with MoMSME, and social security contributions with EPFO/ESIC. No single authorised aggregation layer provides lenders with a composite view of enterprise financial health, despite the Account Aggregator framework's theoretical capacity to do so for consenting borrowers.</p>
+
+    <h3 class="sub-subsection">Challenge 2 — Credit Scoring Model Inadequacy</h3>
+    <p>Standard credit bureau scores (CIBIL, Experian, CRIF) are calibrated for consumers and large enterprises with transaction histories on formal credit products. The majority of micro and small enterprise operators either have thin files (insufficient credit history) or no file (no prior formal credit relationship), rendering traditional credit scoring ineffective for the largest segment of the potential MSME borrower universe.</p>
+
+    <h3 class="sub-subsection">Challenge 3 — Product Design Mismatch</h3>
+    <p>The dominant MSME credit product is the term loan — a fixed-amount, fixed-tenor instrument requiring documented end-use and periodic EMI repayment. This product structure is poorly suited to the revolving, variable, and often unpredictable working-capital needs of micro and small enterprises. Dynamic credit products — overdraft facilities, supply-chain linked revolving credit, and seasonal credit lines — are available from a limited number of NBFCs and fintech lenders but are not yet accessible at the scale or geography required.</p>
+
+    <div class="table-container">
+      <div class="table-caption">Table 10.1 — Modernization Challenge Matrix</div>
+      <table>
+        <thead><tr><th>Challenge</th><th>Root Cause</th><th>Impact on Access</th><th>Solution Direction</th><th>Timeline</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Data Fragmentation</td><td>Regulatory silos</td><td class="red">High</td><td>AA framework expansion</td><td class="num">2–4 years</td></tr>
+          <tr><td class="bold">Credit Score Inadequacy</td><td>Model calibration</td><td class="red">High</td><td>Alt-data underwriting</td><td class="num">2–3 years</td></tr>
+          <tr><td class="bold">Product Mismatch</td><td>Bank incentives</td><td class="red">High</td><td>NBFC product innovation</td><td class="num">1–3 years</td></tr>
+          <tr><td class="bold">NBFC Regulatory Uncertainty</td><td>RBI rule evolution</td><td class="gold">Medium</td><td>Regulatory clarity, sandbox</td><td class="num">1–2 years</td></tr>
+          <tr><td class="bold">Digital Literacy Gap</td><td>Education deficit</td><td class="red">High</td><td>BC network + finlit</td><td class="num">3–5 years</td></tr>
+          <tr><td class="bold">NPA Risk Aversion</td><td>PSB NPA experience</td><td class="gold">Medium</td><td>Guarantee expansion</td><td class="num">Ongoing</td></tr>
+          <tr><td class="bold">Last-mile Distribution</td><td>Geography</td><td class="red">High</td><td>Assisted digital model</td><td class="num">2–5 years</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-subsection">Challenge 4 — NPA Legacy and Lender Risk Aversion</h3>
+    <p>Public sector banks' cautious approach to MSME lending is in part a rational response to elevated non-performing asset (NPA) ratios in this segment during the 2016–2020 period. The GST transition disruption (2017), demonetisation (2016), and NBFC liquidity crisis (2018–19) collectively elevated MSME credit stress, damaging lender appetite for the segment. Rebuilding lender confidence requires not only improved underwriting tools but a sustained track record of portfolio performance — a medium-term process.</p>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">19</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 15 — POLICY RECOMMENDATIONS
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 11 — Policy Recommendations</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 11</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">Policy<br><em>Recommendations</em></h1>
+    <p class="lead">The following policy recommendations are structured across three implementation horizons: immediate (0–18 months), medium-term (18 months – 4 years), and structural (4 years and beyond). Each addresses a distinct dimension of the financing friction framework.</p>
+
+    <h2 class="subsection">Immediate Actions (0–18 Months)</h2>
+    <div class="callout positive">
+      <div class="callout-title">Recommendation P-1 — Accelerate CGTMSE Capacity Expansion</div>
+      <p>Increase the CGTMSE guarantee corpus and raise per-borrower guarantee limits, with specific sub-limits for working-capital instruments. Reform the claim settlement process to reduce the 12–18 month average settlement timeline, which currently deters lender participation. Target: double the number of active guarantee beneficiaries within 18 months.</p>
+    </div>
+    <div class="callout positive">
+      <div class="callout-title">Recommendation P-2 — Mandate TReDS Participation for Larger Buyers</div>
+      <p>Extend the existing mandate for companies with turnover above Rs. 250 crore to onboard TReDS to include all central and state government entities as buyers. Create incentive structures (GST input credit, banking relationship preferences) for corporates with turnover Rs. 50–250 crore to voluntarily participate. This would materially reduce payment delay-driven working-capital stress for MSME suppliers.</p>
+    </div>
+    <div class="callout positive">
+      <div class="callout-title">Recommendation P-3 — Statutory Payment Discipline Framework</div>
+      <p>Strengthen and enforce the MSMED Act's 45-day payment provision through automated GSTN-linked penalty mechanisms — where delayed B2B payments to registered MSMEs trigger automatic interest accrual visible in the GST compliance portal. This aligns enforcement with existing digital infrastructure and removes the litigation burden from MSME creditors.</p>
+    </div>
+
+    <h2 class="subsection">Medium-Term Actions (18 Months – 4 Years)</h2>
+    <div class="callout insight">
+      <div class="callout-title">Recommendation P-4 — MSME Financial Data Integration Layer</div>
+      <p>Create a unified MSME Financial Intelligence Platform (MFIP) that aggregates consented data from GSTN, Udyam, banking system, and EPFO into a single credit intelligence profile accessible to lenders through the Account Aggregator framework. This would fundamentally resolve the informational friction that excludes thin-file enterprises from formal credit.</p>
+    </div>
+    <div class="callout insight">
+      <div class="callout-title">Recommendation P-5 — Embedded Finance Regulatory Framework</div>
+      <p>Develop a clear regulatory framework for embedded lending — credit origination through non-financial platforms (e-commerce marketplaces, accounting software, supply chain management platforms). This would enable the most operationally relevant credit products to reach MSMEs at the moment of financial need, without requiring separate financial institution relationships.</p>
+    </div>
+
+    <h2 class="subsection">Structural Actions (4+ Years)</h2>
+    <div class="callout key-finding">
+      <div class="callout-title">Recommendation P-6 — MSME Financial Literacy as National Infrastructure</div>
+      <p>Integrate MSME financial management education — including credit planning, working-capital management, digital banking, and scheme awareness — into vocational training, Jan Shikshan Sansthan programmes, and SIDBI/RBI's financial literacy campaigns. Financial capability at the enterprise level is the demand-side complement to infrastructure improvements and is chronically underfunded.</p>
+    </div>
+    <div class="callout key-finding">
+      <div class="callout-title">Recommendation P-7 — State-level Credit Infrastructure Investment</div>
+      <p>Establish a National MSME Credit Infrastructure Fund to support state governments in building last-mile banking infrastructure, NBFC franchise expansion, and Business Correspondent network deepening in credit-desert geographies. Prioritise states with the highest MSME population-to-credit-access ratios (UP, Bihar, MP, Jharkhand).</p>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">21</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 16 — INSTITUTIONAL RECOMMENDATIONS + DASHBOARD
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 12–13 — Institutional Recommendations &amp; Dashboard</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 12</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">Institutional<br><em>Recommendations</em></h1>
+
+    <p>The following recommendations are directed at financial institutions — banks, NBFCs, fintech lenders, and development finance institutions — operating within India's MSME financing ecosystem.</p>
+
+    <div class="table-container">
+      <div class="table-caption">Table 12.1 — Institutional Action Recommendations</div>
+      <table>
+        <thead><tr><th>Institution Type</th><th>Priority Action</th><th>Rationale</th><th>Implementation Complexity</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Public Sector Banks</td><td>Dedicated MSME relationship officer network in Tier 3 geographies</td><td>Relationship deficit is a root cause of low penetration</td><td class="gold">Medium</td></tr>
+          <tr><td class="bold">Private Banks</td><td>Cash-flow based credit products for sub-₹1Cr segment</td><td>Product mismatch leaves large viable segment unserved</td><td class="gold">Medium</td></tr>
+          <tr><td class="bold">NBFCs</td><td>Expand co-lending partnerships and AA-based underwriting</td><td>Scale and risk mitigation through bank partnerships</td><td class="green">Low</td></tr>
+          <tr><td class="bold">Fintech Lenders</td><td>Assisted digital onboarding via BC agent network</td><td>Reduces adoption friction in low-literacy markets</td><td class="gold">Medium</td></tr>
+          <tr><td class="bold">SIDBI</td><td>Scale MSME Pulse data publication; expand direct lending</td><td>Data intelligence and last-resort capital provision</td><td class="green">Low</td></tr>
+          <tr><td class="bold">Development Finance</td><td>Blended finance instruments for high-risk MSME segments</td><td>Market failure requires concessional capital to unlock</td><td class="red">High</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-heavy" style="margin:6mm 0;"></div>
+
+    <div class="section-eyebrow">
+      <span class="section-number">Section 13</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title" style="font-size:18pt;">Dashboard<br><em>Architecture</em></h1>
+
+    <p>The India SME Credit Intelligence Dashboard is proposed as a monitoring and analytical platform to track MSME financing health indicators at state and sector level in near-real time.</p>
+
+    <div class="chart-placeholder">
+      <div class="chart-placeholder-inner" style="min-height:55mm;">
+        <div class="chart-label">Figure 13.1 — Dashboard Wireframe Concept</div>
+        <div class="chart-title">MSME Credit Observatory Dashboard — Module Architecture</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:3mm; margin-top:3mm;">
+          <div style="background:var(--accent); padding:3mm 4mm;">
+            <div style="font-family:var(--font-mono); font-size:5.5pt; color:rgba(255,255,255,0.6); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2mm;">Module A</div>
+            <div style="font-family:var(--font-display); font-size:9pt; font-weight:700; color:#fff;">Credit Gap Tracker</div>
+            <div style="font-family:var(--font-body); font-size:7pt; color:rgba(255,255,255,0.7); margin-top:2mm;">State-wise credit gap estimates; formal credit penetration heatmap; quarterly trends</div>
+          </div>
+          <div style="background:var(--bg-card); border:0.5pt solid var(--rule); border-top:2pt solid var(--gold); padding:3mm 4mm;">
+            <div style="font-family:var(--font-mono); font-size:5.5pt; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2mm;">Module B</div>
+            <div style="font-family:var(--font-display); font-size:9pt; font-weight:700; color:var(--ink);">WC Stress Monitor</div>
+            <div style="font-family:var(--font-body); font-size:7pt; color:var(--ink-muted); margin-top:2mm;">Sector-level receivables data; payment delay indices; stress escalation alerts</div>
+          </div>
+          <div style="background:var(--bg-card); border:0.5pt solid var(--rule); border-top:2pt solid var(--green-ok); padding:3mm 4mm;">
+            <div style="font-family:var(--font-mono); font-size:5.5pt; color:var(--green-ok); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2mm;">Module C</div>
+            <div style="font-family:var(--font-display); font-size:9pt; font-weight:700; color:var(--ink);">Digital Readiness Index</div>
+            <div style="font-family:var(--font-body); font-size:7pt; color:var(--ink-muted); margin-top:2mm;">AA adoption rate; GST compliance rate; digital payment penetration by geography</div>
+          </div>
+          <div style="background:var(--bg-card); border:0.5pt solid var(--rule); border-top:2pt solid var(--accent-mid); padding:3mm 4mm;">
+            <div style="font-family:var(--font-mono); font-size:5.5pt; color:var(--accent-mid); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2mm;">Module D</div>
+            <div style="font-family:var(--font-display); font-size:9pt; font-weight:700; color:var(--ink);">Scheme Performance</div>
+            <div style="font-family:var(--font-body); font-size:7pt; color:var(--ink-muted); margin-top:2mm;">CGTMSE utilisation; MUDRA disbursement; ECLGS recovery; scheme awareness rates</div>
+          </div>
+          <div style="background:var(--bg-card); border:0.5pt solid var(--rule); border-top:2pt solid var(--red-stress); padding:3mm 4mm;">
+            <div style="font-family:var(--font-mono); font-size:5.5pt; color:var(--red-stress); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2mm;">Module E</div>
+            <div style="font-family:var(--font-display); font-size:9pt; font-weight:700; color:var(--ink);">NPA &amp; Risk Monitor</div>
+            <div style="font-family:var(--font-body); font-size:7pt; color:var(--ink-muted); margin-top:2mm;">MSME NPA trends by sector; lender risk appetite index; restructuring pipeline</div>
+          </div>
+          <div style="background:var(--bg-warm); border:0.5pt solid var(--rule); padding:3mm 4mm;">
+            <div style="font-family:var(--font-mono); font-size:5.5pt; color:var(--ink-faint); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2mm;">Data Sources</div>
+            <div style="font-family:var(--font-body); font-size:7pt; color:var(--ink-muted); margin-top:2mm;">RBI DBIE · SIDBI Pulse · GSTN API · CIBIL/Bureau data · MoMSME · NABARD surveys</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">22–23</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 17 — METHODOLOGY & LIMITATIONS
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 14–15 — Methodology &amp; Limitations</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 14</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title"><em>Methodology</em></h1>
+
+    <p class="lead">This report employs an analytical synthesis methodology, integrating secondary institutional data with structured qualitative observation from field-informed context. No primary survey data was collected.</p>
+
+    <h2 class="subsection">14.1 — Data Sources &amp; Evidence Base</h2>
+    <div class="table-container">
+      <div class="table-caption">Table 14.1 — Primary Data Source Registry</div>
+      <table>
+        <thead><tr><th>Source</th><th>Data Type</th><th>Coverage</th><th>Usage in Report</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">RBI Annual Reports &amp; DBIE</td><td>Banking system data</td><td>2015–2024</td><td>Credit penetration, NPA analysis</td></tr>
+          <tr><td class="bold">SIDBI MSME Pulse</td><td>MSME credit analytics</td><td>2016–2024</td><td>WC stress, sector analysis</td></tr>
+          <tr><td class="bold">IFC MSME Finance Gap Report</td><td>Global finance gap</td><td>2017–2022</td><td>Gap quantification framework</td></tr>
+          <tr><td class="bold">World Bank Enterprise Surveys</td><td>Enterprise-level data</td><td>2014–2022</td><td>Access-to-finance benchmarking</td></tr>
+          <tr><td class="bold">Ministry of MSME Annual Reports</td><td>Policy &amp; programme data</td><td>2018–2024</td><td>Scheme analysis, MSME counts</td></tr>
+          <tr><td class="bold">NABARD Financial Inclusion Reports</td><td>Rural credit access</td><td>2019–2023</td><td>Tier 3 / rural analysis</td></tr>
+          <tr><td class="bold">RBI Financial Stability Reports</td><td>Systemic risk data</td><td>2019–2024</td><td>NPA context, lender risk</td></tr>
+          <tr><td class="bold">CRISIL SME Reports</td><td>SME rating &amp; credit data</td><td>2018–2023</td><td>Sector stress profiles</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="subsection">14.2 — Analytical Framework Design</h2>
+    <p>The Credit Friction Framework and Operational Liquidity Stress Model are original analytical constructs developed for this report, drawing conceptual architecture from IFC financing constraint literature, McKinsey Global Institute's emerging market SME analyses, and Brookings Institution frameworks for financial inclusion measurement. Quantitative parameters presented in the models are illustrative ranges derived from the secondary sources cited, not independently generated calculations.</p>
+
+    <div class="rule-heavy"></div>
+
+    <div class="section-eyebrow" style="margin-top:5mm;">
+      <span class="section-number">Section 15</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title" style="font-size:18pt;">Limitations of<br><em>Research</em></h1>
+
+    <div class="callout note">
+      <div class="callout-title">Limitation 1 — Absence of Primary Data Collection</div>
+      <p>This report does not present findings from original surveys or interviews with MSME operators, bank officers, or policy implementers. All analytical conclusions are derived from secondary institutional sources. The inclusion of primary research through structured surveys or qualitative interviews would substantially strengthen the report's evidential foundation.</p>
+    </div>
+    <div class="callout note">
+      <div class="callout-title">Limitation 2 — Data Currency &amp; Geographic Specificity</div>
+      <p>Many data sources cited reflect conditions as of 2021–2023. The rapidly evolving digital lending landscape and ongoing policy reforms may render certain observations partially outdated. Additionally, district and sub-state level data is limited for most variables, constraining the geographic precision of state-level analyses.</p>
+    </div>
+    <div class="callout note">
+      <div class="callout-title">Limitation 3 — Informal Economy Measurement Gap</div>
+      <p>A substantial share of MSME activity — particularly at the micro end — occurs within informal or semi-formal enterprise structures that are systematically undercounted in official data. Estimates of MSME populations, credit gaps, and working-capital requirements that rely on formal enterprise surveys may therefore understate the scale of the challenges analysed.</p>
+    </div>
+    <div class="callout note">
+      <div class="callout-title">Limitation 4 — Analytical Framework Scope</div>
+      <p>The OLSM and Credit Friction Framework are analytical constructs, not econometrically validated models. They are offered as structured thinking tools for synthesis and policy design, not as predictive instruments.</p>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">24–25</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 18 — ABOUT THE RESEARCHER
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 16 — About the Researcher</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 16</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">About the<br><em>Researcher</em></h1>
+
+    <div class="two-col-60-40" style="margin-top:4mm;">
+      <div>
+        <h2 class="subsection" style="margin-top:0;">Priyanshu Gupta</h2>
+        <p><strong>Programme:</strong> Bachelor of Business Administration (BBA), Final Year<br>
+        <strong>Institution:</strong> Lovely Professional University, Phagwara, Punjab<br>
+        <strong>School:</strong> School of Business</p>
+
+        <p>Priyanshu Gupta is a final-year BBA student at Lovely Professional University, Punjab, with a substantive background in the operational realities of small business management in Tier 3 India. Growing up in Eastern Uttar Pradesh — a region with one of the highest concentrations of MSME activity but among the lowest rates of formal credit penetration — provided sustained exposure to the financing challenges, seasonal liquidity patterns, and institutional realities that define the everyday experience of small business operators in non-metropolitan India.</p>
+
+        <p>The COVID-19 disruption period (2020–2022) brought this perspective into sharp analytical focus — demonstrating how quickly thin liquidity buffers translate into closure risk when formal credit access is absent. Priyanshu is particularly interested in the intersection of financial systems design, digital infrastructure, and MSME modernization — fields where he intends to develop postgraduate expertise.</p>
+
+        <h2 class="subsection">Research Interests</h2>
+        <ul class="report-list">
+          <li>MSME finance systems and credit architecture in emerging markets</li>
+          <li>Digital financial infrastructure and its adoption dynamics in non-metropolitan India</li>
+          <li>Operational intelligence and data analytics applied to business systems</li>
+          <li>Supply chain finance and working-capital management for small enterprises</li>
+          <li>Financial inclusion policy design and implementation effectiveness</li>
+          <li>Economic development in Tier 2 / Tier 3 Indian markets</li>
+        </ul>
+
+        <h2 class="subsection">Academic &amp; Portfolio Context</h2>
+        <p>This project is produced as an independent analytical work sample — demonstrating capability in secondary research synthesis, framework development, and policy analysis. It is intended as a portfolio contribution for postgraduate programme applications and professional development, and should be understood as the independent work of the researcher rather than an output of any institutional research programme.</p>
+      </div>
+
+      <div>
+        <div style="background:var(--accent); padding:6mm; margin-bottom:5mm;">
+          <div style="font-family:var(--font-mono); font-size:5.5pt; color:rgba(255,255,255,0.55); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:4mm;">Researcher Profile</div>
+
+          <div style="margin-bottom:4mm;">
+            <div style="font-family:var(--font-display); font-size:16pt; font-weight:800; color:#fff; line-height:1.2;">Priyanshu<br>Gupta</div>
+          </div>
+
+          <div style="border-top:0.5pt solid rgba(255,255,255,0.2); padding-top:4mm;">
+            <div style="font-family:var(--font-mono); font-size:6pt; color:rgba(255,255,255,0.45); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2px;">Degree</div>
+            <div style="font-family:var(--font-body); font-size:8pt; color:rgba(255,255,255,0.85); margin-bottom:3mm;">BBA — Bachelor of Business Administration</div>
+
+            <div style="font-family:var(--font-mono); font-size:6pt; color:rgba(255,255,255,0.45); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2px;">University</div>
+            <div style="font-family:var(--font-body); font-size:8pt; color:rgba(255,255,255,0.85); margin-bottom:3mm;">Lovely Professional University, Punjab</div>
+
+            <div style="font-family:var(--font-mono); font-size:6pt; color:rgba(255,255,255,0.45); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2px;">Home District</div>
+            <div style="font-family:var(--font-body); font-size:8pt; color:rgba(255,255,255,0.85); margin-bottom:3mm;">Eastern Uttar Pradesh, India</div>
+
+            <div style="font-family:var(--font-mono); font-size:6pt; color:rgba(255,255,255,0.45); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2px;">Report Role</div>
+            <div style="font-family:var(--font-body); font-size:8pt; color:rgba(255,255,255,0.85);">Primary Researcher &amp; Author</div>
+          </div>
+        </div>
+
+        <div style="background:var(--gold-pale); border:0.5pt solid var(--rule); border-left:2pt solid var(--gold); padding:4mm 5mm;">
+          <div style="font-family:var(--font-mono); font-size:6pt; color:var(--gold); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:3mm;">Contextual Asset</div>
+          <p style="font-size:8pt; font-style:italic; color:var(--ink-secondary); margin:0; line-height:1.6;">"Direct operational exposure to small business financing challenges in Tier 3 India is an asset that academic training alone cannot replicate. It provides an interpretive lens that transforms secondary data from abstract numbers into recognisable realities — and it is this grounding that gives analytical work on MSME finance its credibility and its purpose."</p>
+          <div style="font-family:var(--font-mono); font-size:5.5pt; color:var(--ink-faint); margin-top:3mm; text-transform:uppercase; letter-spacing:0.1em;">— Researcher's Statement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">26</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 19 — CONCLUSION
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 17 — Conclusion</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 17</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title"><em>Conclusion</em></h1>
+
+    <p class="lead">India's MSME credit problem is, in one sense, a problem of translation. The policy frameworks exist. The digital infrastructure exists. The regulatory intent is, by and large, pointed in the right direction. What does not yet exist — at adequate scale, in adequate geography, with adequate reach — is the translation of these inputs into accessible, affordable, appropriately structured credit for the 84% of MSME units that still operate outside the formal financial system.</p>
+
+    <p>The analysis across this report maps financing friction across four overlapping dimensions — structural, informational, institutional, and behavioural. What emerges from that mapping is an important and somewhat uncomfortable finding: there is no single lever that, if pulled, resolves the problem. The credit access deficit facing Indian MSMEs is systemic in the truest sense: each layer of friction reinforces the others, and interventions that target only one dimension tend to produce partial, temporary improvements rather than structural change.</p>
+
+    <p>The working-capital analysis puts a more concrete face on this abstraction. The receivables-payables mismatch — endemic in manufacturing, agro-processing, and construction supply chains — is the specific mechanism through which macro-level credit deficits become micro-level business distress. Small enterprises are often forced into informal borrowing not because they are financially weak, but because the formal credit system moves at a pace and scale that their cash-flow cycles cannot accommodate. This is a design problem as much as a capital problem.</p>
+
+    <p>The digital lending infrastructure analysis offered grounds for cautious optimism. India's Account Aggregator framework, OCEN, and GST-linked credit scoring represent genuine advances in the informational architecture of MSME lending. They have the potential — if adoption challenges are systematically addressed — to bring millions of thin-file enterprises into the formal credit system at dramatically lower transaction costs than traditional banking models permit.</p>
+
+    <div class="exec-summary-box">
+      <div class="esb-label">Closing Thesis</div>
+      <p>The story of MSME credit in India is ultimately a story about distance — the distance between how financial institutions are designed and how small businesses actually operate. Closing that distance requires more than better technology or another government scheme. It requires a genuine redesign of lending for the enterprises that actually exist: first-generation entrepreneurs managing seasonal cash flows without formal accounts, small processors navigating procurement cycles without collateral to pledge, sub-contractors building the country's infrastructure without a bank that recognises their work as creditworthy. That design work is, in 2025, still largely unfinished.</p>
+    </div>
+
+    <h2 class="subsection">Summary of Core Findings</h2>
+    <div class="table-container">
+      <div class="table-caption">Table 17.1 — Report Finding Summary Matrix</div>
+      <table>
+        <thead><tr><th>Domain</th><th>Central Finding</th><th>Evidence Strength</th><th>Policy Priority</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Credit Access</td><td>Fewer than 16% of MSMEs access formal credit; gap persists structurally</td><td class="green">Strong</td><td class="red">Critical</td></tr>
+          <tr><td class="bold">Working Capital</td><td>56-day average net cash conversion gap creates endemic stress</td><td class="gold">Moderate</td><td class="red">High</td></tr>
+          <tr><td class="bold">Geography</td><td>UP, Bihar, MP face 50–60% below-national credit penetration</td><td class="green">Strong</td><td class="red">Critical</td></tr>
+          <tr><td class="bold">Digital Infrastructure</td><td>AA/OCEN infrastructure advanced; adoption remains the binding constraint</td><td class="gold">Moderate</td><td class="gold">High</td></tr>
+          <tr><td class="bold">Sector Stress</td><td>Agro-processing and construction sub-contractors face critical stress</td><td class="gold">Moderate</td><td class="red">High</td></tr>
+          <tr><td class="bold">Policy Effectiveness</td><td>CGTMSE/MUDRA have impact but reach thin-file enterprises inadequately</td><td class="green">Strong</td><td class="gold">Medium</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The India SME Credit Intelligence Observatory represents a foundational analytical contribution to the understanding of MSME financing friction in India's emerging business ecosystems. The researcher invites engagement, critique, and collaboration from researchers, policymakers, and practitioners working in this field.</p>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">27</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 20 — REFERENCES
+═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="running-header">
+    <span>India SME Credit Intelligence Observatory</span>
+    <span class="rh-title">Section 18 — References &amp; Bibliography</span>
+  </div>
+  <div class="page-inner">
+    <div class="section-eyebrow">
+      <span class="section-number">Section 18</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h1 class="section-title">References &amp;<br><em>Bibliography</em></h1>
+
+    <p style="font-size:8pt; color:var(--ink-muted); font-style:italic; margin-bottom:5mm;">The following sources constitute the primary institutional evidence base for this report. All quantitative data is drawn from these publicly available publications. Citations follow APA 7th Edition format.</p>
+
+    <h2 class="subsection" style="margin-top:0;">International Institutional Sources</h2>
+    <div class="footnote" style="font-size:8pt; color:var(--ink-secondary); line-height:1.9;">
+      <p>International Finance Corporation (IFC). (2017). <em>MSME Finance Gap: Assessment of the Shortfalls and Opportunities in Financing Micro, Small, and Medium Enterprises in Emerging Markets.</em> World Bank Group.</p>
+      <p>International Finance Corporation (IFC). (2022). <em>Closing the Credit Gap for Formal and Informal Micro, Small, and Medium Enterprises.</em> World Bank Group.</p>
+      <p>World Bank. (2023). <em>Enterprise Survey India.</em> World Bank Enterprise Surveys Database. https://www.enterprisesurveys.org</p>
+      <p>World Bank. (2022). <em>Doing Business: Ease of Getting Credit — India.</em> International Bank for Reconstruction and Development.</p>
+      <p>International Monetary Fund (IMF). (2023). <em>India Article IV Consultation Staff Report.</em> IMF Country Report No. 23/224.</p>
+      <p>Asian Development Bank (ADB). (2021). <em>Trade and Supply Chain Finance in Asia and the Pacific.</em> ADB Working Paper Series.</p>
+    </div>
+
+    <h2 class="subsection">Indian Institutional Sources</h2>
+    <div class="footnote" style="font-size:8pt; color:var(--ink-secondary); line-height:1.9;">
+      <p>Reserve Bank of India (RBI). (2023–24). <em>Annual Report 2023–24.</em> RBI Publications.</p>
+      <p>Reserve Bank of India (RBI). (2024). <em>Financial Stability Report — June 2024.</em> RBI Publications.</p>
+      <p>Reserve Bank of India (RBI). (2023). <em>Report of the Committee on Micro, Small and Medium Enterprises.</em> RBI.</p>
+      <p>Small Industries Development Bank of India (SIDBI). (2024). <em>MSME Pulse — Quarterly Report Q3 2023–24.</em> SIDBI &amp; TransUnion CIBIL.</p>
+      <p>Ministry of Micro, Small and Medium Enterprises. (2023). <em>Annual Report 2022–23.</em> Government of India.</p>
+      <p>Ministry of Finance. (2020). <em>Emergency Credit Line Guarantee Scheme (ECLGS) — Operational Guidelines.</em> Government of India.</p>
+      <p>NABARD. (2022). <em>Status of Microfinance in India 2021–22.</em> NABARD Publication.</p>
+      <p>NABARD. (2023). <em>All India Rural Financial Inclusion Survey 2021–22.</em> NABARD Publication.</p>
+      <p>NITI Aayog. (2022). <em>India's Booming Gig and Platform Economy.</em> NITI Aayog Publication.</p>
+      <p>CRISIL. (2023). <em>MSME Sector Review — Financial Year 2022–23.</em> CRISIL Research.</p>
+    </div>
+
+    <h2 class="subsection">Policy &amp; Analytical Literature</h2>
+    <div class="footnote" style="font-size:8pt; color:var(--ink-secondary); line-height:1.9;">
+      <p>McKinsey Global Institute. (2019). <em>Financial Services for All: The Promise and Potential of Digital Finance in Asia.</em> McKinsey &amp; Company.</p>
+      <p>Brookings Institution. (2021). <em>SMEs and the COVID-19 Pandemic: Lessons from India.</em> Brookings India.</p>
+      <p>MSME Development Institute (MSME-DI). (2022). <em>Credit Flow to MSMEs — State-wise Analysis.</em> Ministry of MSME, Government of India.</p>
+      <p>Dvara Research. (2023). <em>Account Aggregator Framework — Status and Adoption Review.</em> Dvara Research Foundation.</p>
+      <p>ICRIER. (2022). <em>Digital Lending to MSMEs in India: Opportunities and Regulatory Challenges.</em> ICRIER Working Paper No. 420.</p>
+    </div>
+
+    <div class="footnote-section">
+      <div class="footnote">Note: All data cited in this project reflects publicly available institutional sources. Illustrative quantitative ranges in analytical frameworks are derived from these sources and do not represent independently computed statistics. This is an independent analytical research project produced for academic portfolio purposes. It is not an institutional publication, peer-reviewed paper, or official report from any organisation. The researcher affirms the integrity and attributional accuracy of all cited sources.</div>
+    </div>
+  </div>
+  <div class="running-footer">
+    <span>Priyanshu Gupta · LPU BBA · 2025</span>
+    <span>India SME Credit Intelligence Observatory · 2025</span>
+    <span class="page-number-display">28</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 21 — BACK COVER
+═══════════════════════════════════════════════════════════════ -->
+<div class="page" style="min-height:297mm; display:flex; flex-direction:column; background:var(--accent);">
+  <div style="height:3mm; background:linear-gradient(90deg, var(--gold) 0%, var(--accent-mid) 60%, var(--accent) 100%);"></div>
+  <div style="flex:1; padding:20mm 18mm; display:flex; flex-direction:column; justify-content:space-between;">
+    <div>
+      <div style="font-family:var(--font-mono); font-size:6pt; color:rgba(255,255,255,0.4); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:8mm;">Analytical Research Project · 2025 · 2025</div>
+      <div style="font-family:var(--font-display); font-size:28pt; font-weight:900; color:#fff; line-height:1.15; margin-bottom:6mm;">India SME Credit<br><span style="font-style:italic; color:rgba(255,255,255,0.7);">Intelligence</span><br>Observatory</div>
+      <div style="width:25mm; height:2pt; background:var(--gold); margin-bottom:6mm;"></div>
+      <div style="font-family:var(--font-body); font-size:10pt; color:rgba(255,255,255,0.65); font-style:italic; max-width:120mm; line-height:1.6;">Financing Friction, Working-Capital Stress &amp; Digital Credit Readiness in Emerging Business Ecosystems</div>
+    </div>
+
+    <div>
+      <div style="border-top:0.5pt solid rgba(255,255,255,0.2); padding-top:6mm; display:grid; grid-template-columns:1fr 1fr; gap:10mm;">
+        <div>
+          <div style="font-family:var(--font-mono); font-size:5.5pt; color:rgba(255,255,255,0.4); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:3mm;">Researcher</div>
+          <div style="font-family:var(--font-display); font-size:12pt; font-weight:700; color:#fff;">Priyanshu Gupta</div>
+          <div style="font-family:var(--font-mono); font-size:7pt; color:rgba(255,255,255,0.55); margin-top:2mm;">BBA · Lovely Professional University</div>
+          <div style="font-family:var(--font-mono); font-size:7pt; color:rgba(255,255,255,0.45); margin-top:1mm;">Eastern Uttar Pradesh · India</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:var(--font-mono); font-size:5.5pt; color:rgba(255,255,255,0.4); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:3mm;">Document Reference</div>
+          <div style="font-family:var(--font-mono); font-size:8pt; color:rgba(255,255,255,0.65);">ISCO · 2025</div>
+          <div style="font-family:var(--font-mono); font-size:7pt; color:rgba(255,255,255,0.45); margin-top:2mm;">Independent Research · Portfolio Edition</div>
+          <div style="font-family:var(--font-mono); font-size:7pt; color:rgba(255,255,255,0.45); margin-top:1mm;">Academic Edition · 2025</div>
+          <div style="margin-top:4mm; display:inline-block; border:0.5pt solid rgba(255,255,255,0.25); padding:2px 8px; font-family:var(--font-mono); font-size:5.5pt; color:rgba(255,255,255,0.4); letter-spacing:0.1em; text-transform:uppercase;">Non-Commercial · Portfolio Use</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height:2mm; background:var(--gold);"></div>
+</div>
+
+<style>
+@media screen {
+  /* Reset page shell for high-end editorial scroll */
+  html {
+    background: #fbfaf8 !important;
+    scroll-behavior: smooth;
+  }
+  body {
+    background: #fbfaf8 !important;
+    padding-top: 60px !important; /* Spacer for top navbar */
+    margin: 0;
+  }
+  
+  /* Top Sticky Bar */
+  .obs-top-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    background: #0b1329;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-family: 'DM Mono', monospace;
+  }
+  .obs-top-title {
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+  }
+  .obs-back-btn {
+    font-size: 8pt;
+    color: #ffffff;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .obs-back-btn:hover {
+    background: #ffffff;
+    color: #0b1329;
+  }
+  
+  /* Reading Progress indicator */
+  .obs-progress-container {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+  }
+  .obs-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #c49a1e; /* Gold indicator matching the gold variable */
+    transition: width 0.1s ease;
+  }
+
+  /* Split Layout */
+  .observatory-layout {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 0;
+    position: relative;
+  }
+  
+  .observatory-sidebar {
+    width: 320px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    padding: 30px 24px;
+    border-right: 1px solid #e8e4de;
+    background: #faf8f5;
+  }
+  
+  .observatory-content {
+    flex: 1;
+    min-width: 0;
+    padding: 30px 40px;
+    background: #ffffff;
+  }
+  
+  /* Continuous page layout */
+  .page {
+    width: 100% !important;
+    max-width: 800px !important;
+    min-height: auto !important;
+    margin: 0 auto 40px auto !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 0 40px 0 !important;
+    border-bottom: 1px solid #e8e4de !important;
+    overflow: visible !important;
+    position: relative !important;
+  }
+  .page:last-of-type {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+  }
+  .page-inner {
+    padding: 0 !important;
+  }
+  
+  /* Sidebar Table of Contents elements */
+  .sidebar-toc-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 14pt;
+    font-weight: 700;
+    color: #0b1329;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #c8c0b4;
+    padding-bottom: 10px;
+  }
+  .sidebar-toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar-toc-item {
+    margin-bottom: 10px;
+  }
+  .sidebar-toc-link {
+    display: flex;
+    gap: 8px;
+    color: #5a5a5a;
+    text-decoration: none;
+    font-size: 8.5pt;
+    line-height: 1.4;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  .sidebar-toc-link:hover {
+    color: #0b1329;
+    background: rgba(26,58,92,0.05);
+  }
+  .sidebar-toc-link.active {
+    color: #1a3a5c;
+    background: #e8eef5;
+    font-weight: 600;
+  }
+  .sidebar-toc-num {
+    font-weight: 600;
+    color: #8b6914;
+    min-width: 24px;
+  }
+  .sidebar-toc-text {
+    flex: 1;
+  }
+
+  /* Table styling */
+  table {
+    font-size: 9.5pt !important;
+  }
+  td, th {
+    padding: 10px 14px !important;
+  }
+  .table-container {
+    overflow-x: auto !important;
+    border: 1px solid #e8e4de;
+    border-radius: 6px;
+    margin: 20px 0;
+  }
+
+  /* Hide print headers in web view */
+  .running-header, .running-footer {
+    display: none !important;
+  }
+
+  /* Mobile Responsive overrides */
+  @media (max-width: 1023px) {
+    body {
+      padding-top: 60px !important;
+    }
+    .observatory-sidebar {
+      display: none !important; /* Hide sidebar on small screens */
+    }
+    .observatory-content {
+      padding: 24px 16px !important;
+    }
+    .page {
+      padding-bottom: 30px !important;
+      margin-bottom: 30px !important;
+    }
+    
+    /* Float TOC menu for mobile */
+    .mobile-toc-toggle {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: #0b1329;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      z-index: 1001;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 16px;
+    }
+    .mobile-toc-modal {
+      position: fixed;
+      top: 60px; bottom: 0; left: 0; right: 0;
+      background: #ffffff;
+      z-index: 999;
+      padding: 24px;
+      overflow-y: auto;
+      display: none;
+    }
+    .mobile-toc-modal.show {
+      display: block;
+    }
+  }
+}
+
+/* Print Overrides to ensure printing works exactly as before */
+@media print {
+  .obs-top-bar, .observatory-sidebar, .mobile-toc-toggle {
+    display: none !important;
+  }
+  body {
+    padding-top: 0 !important;
+  }
+  .observatory-layout, .observatory-content {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+  .page {
+    border: none !important;
+    margin: 0 !important;
+  }
+  .running-header {
+    display: flex !important;
+  }
+  .running-footer {
+    display: flex !important;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Wrap pages in containers
+  const body = document.body;
+  const pages = Array.from(document.querySelectorAll(".page"));
+  if (pages.length === 0) return;
+  
+  // Create structures
+  const layout = document.createElement("div");
+  layout.className = "observatory-layout";
+  
+  const sidebar = document.createElement("aside");
+  sidebar.className = "observatory-sidebar";
+  
+  const content = document.createElement("main");
+  content.className = "observatory-content";
+  
+  // Insert layout into body
+  body.insertBefore(layout, body.firstChild);
+  layout.appendChild(sidebar);
+  layout.appendChild(content);
+  
+  // Create Top Bar
+  const topBar = document.createElement("header");
+  topBar.className = "obs-top-bar";
+  topBar.innerHTML = `
+    <div class="obs-top-title">India SME Credit Intelligence Observatory</div>
+    <a href="/" class="obs-back-btn">← Back to Interactive Dashboard</a>
+    <div class="obs-progress-container">
+      <div class="obs-progress-fill" id="reading-progress"></div>
+    </div>
+  `;
+  body.insertBefore(topBar, layout);
+  
+  // Build Mobile TOC Toggle & Modal
+  const mobileToggle = document.createElement("div");
+  mobileToggle.className = "mobile-toc-toggle";
+  mobileToggle.innerHTML = "☰";
+  body.appendChild(mobileToggle);
+  
+  const mobileModal = document.createElement("div");
+  mobileModal.className = "mobile-toc-modal";
+  mobileModal.innerHTML = `
+    <div class="sidebar-toc-title">Table of Contents</div>
+    <ul class="sidebar-toc-list" id="mobile-toc-list"></ul>
+  `;
+  body.appendChild(mobileModal);
+  
+  mobileToggle.addEventListener("click", () => {
+    mobileModal.classList.toggle("show");
+    mobileToggle.innerHTML = mobileModal.classList.contains("show") ? "✕" : "☰";
+  });
+  
+  // Build TOC Content
+  const tocTitle = document.createElement("div");
+  tocTitle.className = "sidebar-toc-title";
+  tocTitle.innerText = "Table of Contents";
+  sidebar.appendChild(tocTitle);
+  
+  const tocList = document.createElement("ul");
+  tocList.className = "sidebar-toc-list";
+  sidebar.appendChild(tocList);
+  
+  const mobileTocList = document.getElementById("mobile-toc-list");
+  
+  pages.forEach((page, idx) => {
+    // Add page to content area
+    content.appendChild(page);
+    
+    // Assign ID to target
+    let sectionId = `section-${idx}`;
+    let sectionNum = "";
+    let sectionText = "";
+    
+    // Parse the page for heading or title
+    const numSpan = page.querySelector(".section-number");
+    const titleH1 = page.querySelector(".section-title");
+    
+    if (numSpan && titleH1) {
+      sectionNum = numSpan.innerText.trim();
+      sectionText = titleH1.innerText.replace(/[\n\r]+/g, " ").trim();
+      sectionId = sectionNum.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    } else if (idx === 0) {
+      sectionNum = "Cover";
+      sectionText = "Cover Page";
+      sectionId = "cover";
+    } else if (page.querySelector(".section-number") && page.querySelector(".section-number").innerText === "Contents") {
+      sectionNum = "Index";
+      sectionText = "Table of Contents";
+      sectionId = "contents";
+    } else {
+      sectionNum = `Page ${idx + 1}`;
+      sectionText = `Section ${idx + 1}`;
+    }
+    
+    page.id = sectionId;
+    
+    // Add to TOC list if it's a major section
+    const createListItem = () => {
+      const li = document.createElement("li");
+      li.className = "sidebar-toc-item";
+      li.innerHTML = `
+        <a href="#${sectionId}" class="sidebar-toc-link" data-target="${sectionId}">
+          <span class="sidebar-toc-num">${sectionNum}</span>
+          <span class="sidebar-toc-text">${sectionText}</span>
+        </a>
+      `;
+      // Smooth scroll on click
+      li.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        page.scrollIntoView({ behavior: "smooth" });
+        mobileModal.classList.remove("show");
+        mobileToggle.innerHTML = "☰";
+      });
+      return li;
+    };
+    
+    tocList.appendChild(createListItem());
+    mobileTocList.appendChild(createListItem().cloneNode(true));
+  });
+  
+  // Re-attach scroll events to mobile cloned nodes
+  document.querySelectorAll(".mobile-toc-modal .sidebar-toc-link").forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute("data-target");
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+      mobileModal.classList.remove("show");
+      mobileToggle.innerHTML = "☰";
+    });
+  });
+
+  // Reading progress scroll tracker
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    const fillEl = document.getElementById("reading-progress");
+    if (fillEl) fillEl.style.width = `${progress}%`;
+  });
+
+  // IntersectionObserver for active section highlighting
+  const observerOptions = {
+    rootMargin: "-80px 0px -60% 0px",
+    threshold: 0.1
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        document.querySelectorAll(".sidebar-toc-link").forEach(link => {
+          if (link.getAttribute("data-target") === id) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      }
+    });
+  }, observerOptions);
+  
+  pages.forEach(page => observer.observe(page));
+});
+</script>
+</body>
+</html>
