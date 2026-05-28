@@ -22,7 +22,7 @@ The platform includes:
 - Vercel
 ## Deployment
 Live Demo:
-(Add deployment link)
+[(Add deployment link)](https://sme-credit-observatory.vercel.app/)
 ## Installation
 ```bash
 npm install
